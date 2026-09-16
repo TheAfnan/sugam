@@ -1,0 +1,339 @@
+{
+  "standards": [
+    {
+      "id": "IS-1811-2021",
+      "number": "IS 1811:2021",
+      "title": {
+        "en": "Office Furniture - Part 1: General Specifications and Methods of Test",
+        "hi": "कार्यालय फर्नीचर - भाग 1: सामान्य विशिष्टताएं और परीक्षण की विधियां",
+        "ta": "அலுவலக மரச்சாமான்கள் - பகுதி 1: பொதுவான விவரணைகள் மற்றும் சோதனை முறைகள்",
+        "te": "కార్యాలయ ఫర్నిచర్ - భాగ 1: సాధారణ స్పెసిఫికేషన్లు మరియు పరీక్ష పద్ధతులు"
+      },
+      "year": 2021,
+      "category": "Furniture",
+      "keywords": ["office", "furniture", "chair", "desk", "table", "wood", "metal", "seating", "storage"],
+      "scope": {
+        "en": "Specifies general requirements for office furniture including chairs, desks, tables, and storage units. Covers design, materials, safety, durability, and performance criteria.",
+        "hi": "कार्यालय फर्नीचर के लिए सामान्य आवश्यकताओं को निर्दिष्ट करता है जिसमें कुर्सियां, डेस्क, टेबल और भंडारण इकाइयां शामिल हैं।"
+      },
+      "certification": {
+        "timeline": {
+          "total_days": 45,
+          "phases": [
+            {
+              "phase": 1,
+              "name": {"en": "Document Review", "hi": "दस्तावेज़ समीक्षा"},
+              "days": 7,
+              "description": {"en": "BIS reviews application documents and technical specifications"}
+            },
+            {
+              "phase": 2,
+              "name": {"en": "Factory Inspection", "hi": "फैक्टरी निरीक्षण"},
+              "days": 20,
+              "description": {"en": "On-site inspection of manufacturing facility and processes"}
+            },
+            {
+              "phase": 3,
+              "name": {"en": "Sample Testing", "hi": "नमूना परीक्षण"},
+              "days": 15,
+              "description": {"en": "Laboratory testing of samples against standard requirements"}
+            },
+            {
+              "phase": 4,
+              "name": {"en": "Certificate Issuance", "hi": "प्रमाणपत्र जारी करना"},
+              "days": 3,
+              "description": {"en": "Final review and certificate issuance"}
+            }
+          ]
+        },
+        "cost": {
+          "currency": "INR",
+          "total": {"min": 8000, "max": 12000},
+          "breakdown": [
+            {"item": {"en": "Application Fee", "hi": "आवेदन शुल्क"}, "amount": 2000},
+            {"item": {"en": "Testing Cost", "hi": "परीक्षण लागत"}, "amount": 5000},
+            {"item": {"en": "Inspection Fee", "hi": "निरीक्षण शुल्क"}, "amount": 2000},
+            {"item": {"en": "Certificate Fee", "hi": "प्रमाणपत्र शुल्क"}, "amount": 1000},
+            {"item": {"en": "Miscellaneous", "hi": "विविध"}, "amount": 2000}
+          ]
+        },
+        "documents_required": [
+          {"en": "Application Form BIS/C-1", "hi": "आवेदन पत्र बीआईएस/सी-1"},
+          {"en": "Manufacturing Drawings", "hi": "निर्माण चित्र"},
+          {"en": "Process Flow Diagram", "hi": "प्रक्रिया प्रवाह आरेख"},
+          {"en": "Quality Control Manual", "hi": "गुणवत्ता नियंत्रण पुस्तिका"},
+          {"en": "Test Reports", "hi": "परीक्षण रिपोर्ट"}
+        ],
+        "testing_requirements": [
+          {"test": {"en": "Material Composition", "hi": "सामग्री संरचना"}, "standard": "IS 1811:2021 Section 5.1"},
+          {"test": {"en": "Durability Test", "hi": "स्थायित्व परीक्षण"}, "standard": "IS 1811:2021 Section 6.1"},
+          {"test": {"en": "Safety Test", "hi": "सुरक्षा परीक्षण"}, "standard": "IS 1811:2021 Section 7.1"}
+        ]
+      },
+      "related_standards": [
+        {"id": "IS-10321", "relationship": "Safety specifications"},
+        {"id": "IS-14074", "relationship": "Ergonomic requirements"}
+      ],
+      "industries": ["Furniture Manufacturing", "Office Setup", "MSME Furniture"]
+    },
+    {
+      "id": "IS-2062-2011",
+      "number": "IS 2062:2011",
+      "title": {
+        "en": "Hot Rolled Medium and High Tensile Structural Steel - Specification",
+        "hi": "हॉट रोल्ड मध्यम और उच्च तन्यता संरचनात्मक स्टील - विशिष्टता",
+        "ta": "சூடான உருட்டப்பட்ட நடுத்தர மற்றும் உயர் இழுவிசை கட்டமைப்பு எஃகு - விவரக்குறிப்பு",
+        "te": "హాట్ రోల్డ్ మీడియం మరియు హై టెన్సైల్ స్ట్రక్చరల్ స్టీల్ - స్పెసిఫికేషన్"
+      },
+      "year": 2011,
+      "category": "Steel",
+      "keywords": ["steel", "construction", "structural", "building", "metal", "tensile", "hot rolled"],
+      "scope": {
+        "en": "Covers hot rolled medium and high tensile structural steel for use in construction of buildings, bridges, and other structures.",
+        "hi": "भवनों, पुलों और अन्य संरचनाओं के निर्माण में उपयोग के लिए हॉट रोल्ड मध्यम और उच्च तन्यता संरचनात्मक स्टील को शामिल करता है।"
+      },
+      "certification": {
+        "timeline": {
+          "total_days": 60,
+          "phases": [
+            {
+              "phase": 1,
+              "name": {"en": "Document Review", "hi": "दस्तावेज़ समीक्षा"},
+              "days": 10,
+              "description": {"en": "Review of technical specifications and manufacturing process"}
+            },
+            {
+              "phase": 2,
+              "name": {"en": "Factory Inspection", "hi": "फैक्टरी निरीक्षण"},
+              "days": 25,
+              "description": {"en": "Detailed inspection of steel production facility"}
+            },
+            {
+              "phase": 3,
+              "name": {"en": "Sample Testing", "hi": "नमूना परीक्षण"},
+              "days": 20,
+              "description": {"en": "Comprehensive testing of steel samples for strength and composition"}
+            },
+            {
+              "phase": 4,
+              "name": {"en": "Certificate Issuance", "hi": "प्रमाणपत्र जारी करना"},
+              "days": 5,
+              "description": {"en": "Final evaluation and certificate preparation"}
+            }
+          ]
+        },
+        "cost": {
+          "currency": "INR",
+          "total": {"min": 15000, "max": 25000},
+          "breakdown": [
+            {"item": {"en": "Application Fee", "hi": "आवेदन शुल्क"}, "amount": 3000},
+            {"item": {"en": "Testing Cost", "hi": "परीक्षण लागत"}, "amount": 12000},
+            {"item": {"en": "Inspection Fee", "hi": "निरीक्षण शुल्क"}, "amount": 5000},
+            {"item": {"en": "Certificate Fee", "hi": "प्रमाणपत्र शुल्क"}, "amount": 2000},
+            {"item": {"en": "Miscellaneous", "hi": "विविध"}, "amount": 3000}
+          ]
+        },
+        "documents_required": [
+          {"en": "Application Form BIS/C-1", "hi": "आवेदन पत्र बीआईएस/सी-1"},
+          {"en": "Manufacturing Process Details", "hi": "निर्माण प्रक्रिया विवरण"},
+          {"en": "Chemical Composition Reports", "hi": "रासायनिक संरचना रिपोर्ट"},
+          {"en": "Quality Control System", "hi": "गुणवत्ता नियंत्रण प्रणाली"}
+        ]
+      },
+      "related_standards": [
+        {"id": "IS-800", "relationship": "Design code for steel structures"},
+        {"id": "IS-816", "relationship": "Hot rolled steel specifications"}
+      ],
+      "industries": ["Construction", "Infrastructure", "Steel Manufacturing"]
+    },
+    {
+      "id": "IS-10500-2012",
+      "number": "IS 10500:2012",
+      "title": {
+        "en": "Drinking Water - Specification",
+        "hi": "पीने का पानी - विशिष्टता",
+        "ta": "குடிநீர் - விவரக்குறிப்பு",
+        "te": "తాగునీరు - స్పెసిఫికేషన్"
+      },
+      "year": 2012,
+      "category": "Water",
+      "keywords": ["water", "drinking", "quality", "purity", "testing", "safety", "potable"],
+      "scope": {
+        "en": "Specifies requirements for drinking water quality including physical, chemical, and bacteriological characteristics.",
+        "hi": "भौतिक, रासायनिक और जीवाणु संबंधी विशेषताओं सहित पीने के पानी की गुणवत्ता के लिए आवश्यकताओं को निर्दिष्ट करता है।"
+      },
+      "certification": {
+        "timeline": {
+          "total_days": 30,
+          "phases": [
+            {
+              "phase": 1,
+              "name": {"en": "Document Review", "hi": "दस्तावेज़ समीक्षा"},
+              "days": 5,
+              "description": {"en": "Review of water testing facility and procedures"}
+            },
+            {
+              "phase": 2,
+              "name": {"en": "Facility Inspection", "hi": "सुविधा निरीक्षण"},
+              "days": 10,
+              "description": {"en": "Inspection of water treatment and testing facilities"}
+            },
+            {
+              "phase": 3,
+              "name": {"en": "Water Testing", "hi": "पानी परीक्षण"},
+              "days": 12,
+              "description": {"en": "Comprehensive testing of water samples"}
+            },
+            {
+              "phase": 4,
+              "name": {"en": "Certificate Issuance", "hi": "प्रमाणपत्र जारी करना"},
+              "days": 3,
+              "description": {"en": "Final assessment and certificate preparation"}
+            }
+          ]
+        },
+        "cost": {
+          "currency": "INR",
+          "total": {"min": 5000, "max": 8000},
+          "breakdown": [
+            {"item": {"en": "Application Fee", "hi": "आवेदन शुल्क"}, "amount": 1000},
+            {"item": {"en": "Testing Cost", "hi": "परीक्षण लागत"}, "amount": 4000},
+            {"item": {"en": "Inspection Fee", "hi": "निरीक्षण शुल्क"}, "amount": 1500},
+            {"item": {"en": "Certificate Fee", "hi": "प्रमाणपत्र शुल्क"}, "amount": 1500}
+          ]
+        },
+        "documents_required": [
+          {"en": "Water Source Details", "hi": "पानी स्रोत विवरण"},
+          {"en": "Treatment Process Flow", "hi": "उपचार प्रक्रिया प्रवाह"},
+          {"en": "Quality Control Records", "hi": "गुणवत्ता नियंत्रण रिकॉर्ड"},
+          {"en": "Laboratory Accreditation", "hi": "प्रयोगशाला मान्यता"}
+        ]
+      },
+      "related_standards": [
+        {"id": "IS-3025", "relationship": "Water testing methods"},
+        {"id": "IS-1622", "relationship": "Water treatment equipment"}
+      ],
+      "industries": ["Water Treatment", "Public Health", "Food & Beverage"]
+    },
+    {
+      "id": "IS-4218-1987",
+      "number": "IS 4218:1987",
+      "title": {
+        "en": "Food Grade Salt - Specification",
+        "hi": "खाद्य ग्रेड नमक - विशिष्टता",
+        "ta": "உணவு தர உப்பு - விவரக்குறிப்பு",
+        "te": "ఫుడ్ గ్రేడ్ ఉప్పు - స్పెసిఫికేషన్"
+      },
+      "year": 1987,
+      "category": "Food",
+      "keywords": ["food", "salt", "sodium chloride", "edible", "purity", "iodized"],
+      "scope": {
+        "en": "Covers requirements for food grade salt including refined salt, crystal salt, and iodized salt for human consumption.",
+        "hi": "मानव उपभोग के लिए परिष्कृत नमक, क्रिस्टल नमक और आयोडीन युक्त नमक सहित खाद्य ग्रेड नमक की आवश्यकताओं को शामिल करता है।"
+      },
+      "certification": {
+        "timeline": {
+          "total_days": 35,
+          "phases": [
+            {
+              "phase": 1,
+              "name": {"en": "Document Review", "hi": "दस्तावेज़ समीक्षा"},
+              "days": 7,
+              "description": {"en": "Review of manufacturing process and quality systems"}
+            },
+            {
+              "phase": 2,
+              "name": {"en": "Factory Inspection", "hi": "फैक्टरी निरीक्षण"},
+              "days": 15,
+              "description": {"en": "Inspection of salt production and packaging facility"}
+            },
+            {
+              "phase": 3,
+              "name": {"en": "Product Testing", "hi": "उत्पाद परीक्षण"},
+              "days": 10,
+              "description": {"en": "Chemical and microbiological testing of salt samples"}
+            },
+            {
+              "phase": 4,
+              "name": {"en": "Certificate Issuance", "hi": "प्रमाणपत्र जारी करना"},
+              "days": 3,
+              "description": {"en": "Final evaluation and certificate issuance"}
+            }
+          ]
+        },
+        "cost": {
+          "currency": "INR",
+          "total": {"min": 6000, "max": 10000},
+          "breakdown": [
+            {"item": {"en": "Application Fee", "hi": "आवेदन शुल्क"}, "amount": 1500},
+            {"item": {"en": "Testing Cost", "hi": "परीक्षण लागत"}, "amount": 4000},
+            {"item": {"en": "Inspection Fee", "hi": "निरीक्षण शुल्क"}, "amount": 2000},
+            {"item": {"en": "Certificate Fee", "hi": "प्रमाणपत्र शुल्क"}, "amount": 1500},
+            {"item": {"en": "Miscellaneous", "hi": "विविध"}, "amount": 1000}
+          ]
+        }
+      },
+      "industries": ["Food Processing", "Salt Manufacturing", "Consumer Products"]
+    },
+    {
+      "id": "IS-13683-1993",
+      "number": "IS 13683:1993",
+      "title": {
+        "en": "Ready-to-Eat Snack Foods - Specification",
+        "hi": "तैयार खाने वाले स्नैक फूड्स - विशिष्टता",
+        "ta": "உடனே உண்ணக்கூடிய சிற்றுண்டி உணவுகள் - விவரக்குறிப்பு",
+        "te": "సిద్ధంగా తినదగిన స్నాక్ ఫుడ్స్ - స్పెసిఫికేషన్"
+      },
+      "year": 1993,
+      "category": "Food",
+      "keywords": ["snacks", "ready to eat", "packaged food", "chips", "namkeen", "processed food"],
+      "scope": {
+        "en": "Covers requirements for ready-to-eat snack foods including chips, namkeen, and other processed snack items.",
+        "hi": "चिप्स, नमकीन और अन्य प्रसंस्कृत स्नैक वस्तुओं सहित तैयार खाने वाले स्नैक फूड्स की आवश्यकताओं को शामिल करता है।"
+      },
+      "certification": {
+        "timeline": {
+          "total_days": 40,
+          "phases": [
+            {
+              "phase": 1,
+              "name": {"en": "Document Review", "hi": "दस्तावेज़ समीक्षा"},
+              "days": 8,
+              "description": {"en": "Review of food safety and quality management systems"}
+            },
+            {
+              "phase": 2,
+              "name": {"en": "Factory Inspection", "hi": "फैक्टरी निरीक्षण"},
+              "days": 18,
+              "description": {"en": "Inspection of food processing and packaging facility"}
+            },
+            {
+              "phase": 3,
+              "name": {"en": "Product Testing", "hi": "उत्पाद परीक्षण"},
+              "days": 12,
+              "description": {"en": "Microbiological, chemical, and nutritional testing"}
+            },
+            {
+              "phase": 4,
+              "name": {"en": "Certificate Issuance", "hi": "प्रमाणपत्र जारी करना"},
+              "days": 2,
+              "description": {"en": "Final assessment and certificate preparation"}
+            }
+          ]
+        },
+        "cost": {
+          "currency": "INR",
+          "total": {"min": 8000, "max": 15000},
+          "breakdown": [
+            {"item": {"en": "Application Fee", "hi": "आवेदन शुल्क"}, "amount": 2000},
+            {"item": {"en": "Testing Cost", "hi": "परीक्षण लागत"}, "amount": 7000},
+            {"item": {"en": "Inspection Fee", "hi": "निरीक्षण शुल्क"}, "amount": 3000},
+            {"item": {"en": "Certificate Fee", "hi": "प्रमाणपत्र शुल्क"}, "amount": 2000},
+            {"item": {"en": "Miscellaneous", "hi": "विविध"}, "amount": 1000}
+          ]
+        }
+      },
+      "industries": ["Food Processing", "Snack Manufacturing", "FMCG"]
+    }
+  ]
+}

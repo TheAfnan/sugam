@@ -1,0 +1,199 @@
+{
+  "guides": [
+    {
+      "id": "electronics-it",
+      "vertical": "Electronics and IT",
+      "coverImage": "/images/guides/electronics.webp",
+      "stages": [
+        {
+          "title": { "en": "Product Classification", "hi": "उत्पाद वर्गीकरण", "ta": "தயாரிப்பு வகைப்பாடு", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "उत्पाद वर्गीकरण", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "description": { "en": "Determine if your product falls under mandatory BIS certification (CRS scheme). Most electronics require IS 13252 or IS 302.", "hi": "निर्धारित करें कि आपका उत्पाद अनिवार्य BIS प्रमाणीकरण (CRS योजना) के अंतर्गत आता है या नहीं।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "icon": "cpu"
+        },
+        {
+          "title": { "en": "Document Preparation", "hi": "दस्तावेज़ तैयारी", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "कागदपत्र तयारी", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "description": { "en": "Prepare technical documentation including circuit diagrams, user manuals, and test reports.", "hi": "सर्किट आरेख, उपयोगकर्ता पुस्तिका और परीक्षण रिपोर्ट सहित तकनीकी दस्तावेज तैयार करें।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "icon": "file-text"
+        },
+        {
+          "title": { "en": "Lab Testing", "hi": "प्रयोगशाला परीक्षण", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "प्रयोगशाळा चाचणी", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "description": { "en": "Get products tested at BIS-recognized NABL-accredited labs for EMC, safety, and performance.", "hi": "EMC, सुरक्षा और प्रदर्शन के लिए BIS-मान्यता प्राप्त NABL-मान्यता प्राप्त प्रयोगशालाओं में उत्पादों का परीक्षण करवाएं।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "icon": "flask"
+        },
+        {
+          "title": { "en": "BIS Application", "hi": "BIS आवेदन", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "BIS अर्ज", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "description": { "en": "Apply online at manakonline.in with all documents and test reports.", "hi": "सभी दस्तावेजों और परीक्षण रिपोर्टों के साथ manakonline.in पर ऑनलाइन आवेदन करें।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "icon": "send"
+        },
+        {
+          "title": { "en": "Factory Audit", "hi": "फैक्टरी ऑडिट", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "कारखाना ऑडिट", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "description": { "en": "BIS team visits your facility to inspect quality control processes.", "hi": "BIS टीम गुणवत्ता नियंत्रण प्रक्रियाओं का निरीक्षण करने के लिए आपकी सुविधा का दौरा करती है।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "icon": "building"
+        },
+        {
+          "title": { "en": "Certificate Issuance", "hi": "प्रमाणपत्र जारी करना", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "प्रमाणपत्र जारी करणे", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "description": { "en": "Receive your BIS/CRS certificate. Start manufacturing with ISI mark.", "hi": "अपना BIS/CRS प्रमाणपत्र प्राप्त करें। ISI मार्क के साथ निर्माण शुरू करें।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "icon": "award"
+        }
+      ],
+      "relatedStandards": ["IS 302", "IS 13252", "IS 616"],
+      "content": {
+        "en": "The Electronics & IT sector is one of the most regulated under BIS. Products covered under the Compulsory Registration Scheme (CRS) must obtain BIS certification before they can be sold in India. This includes computers, mobile phones, power supplies, LEDs, and more.",
+        "hi": "इलेक्ट्रॉनिक्स और IT क्षेत्र BIS के तहत सबसे अधिक विनियमित है। अनिवार्य पंजीकरण योजना (CRS) के अंतर्गत आने वाले उत्पादों को भारत में बेचे जाने से पहले BIS प्रमाणीकरण प्राप्त करना होगा।",
+        "ta": "மின்னணு மற்றும் IT துறை BIS இன் கீழ் அதிக விதிமுறைகளுக்கு உட்பட்டது. கட்டாய பதிவு திட்டத்தின் (CRS) கீழ் வரும் தயாரிப்புகள் இந்தியாவில் விற்கப்படுவதற்கு முன் BIS சான்றிதழ் பெற வேண்டும்.",
+        "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌"
+      },
+      "overview": {
+        "en": "Comprehensive guide for Electronics & IT product certification under BIS",
+        "hi": "BIS के तहत इलेक्ट्रॉनिक्स और IT उत्पाद प्रमाणीकरण के लिए व्यापक मार्गदर्शिका",
+        "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌"
+      },
+      "avgTimeline": 67,
+      "avgCost": 32000
+    },
+    {
+      "id": "food-beverages",
+      "vertical": "Food and Beverages",
+      "coverImage": "/images/guides/food.webp",
+      "stages": [
+        {
+          "title": { "en": "Regulatory Check", "hi": "नियामक जांच", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "नियामक तपासणी", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "description": { "en": "Check if product requires mandatory BIS certification and FSSAI compliance.", "hi": "जांचें कि क्या उत्पाद को अनिवार्य BIS प्रमाणीकरण और FSSAI अनुपालन की आवश्यकता है।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "icon": "search"
+        },
+        {
+          "title": { "en": "Water/Source Testing", "hi": "पानी/स्रोत परीक्षण", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "पाणी/स्त्रोत चाचणी", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "description": { "en": "Test water source and raw materials at accredited food testing laboratories.", "hi": "मान्यता प्राप्त खाद्य परीक्षण प्रयोगशालाओं में जल स्रोत और कच्चे माल का परीक्षण करें।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "icon": "droplets"
+        },
+        {
+          "title": { "en": "Product Testing", "hi": "उत्पाद परीक्षण", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "उत्पाद चाचणी", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "description": { "en": "Complete food safety and quality testing per IS requirements.", "hi": "IS आवश्यकताओं के अनुसार पूर्ण खाद्य सुरक्षा और गुणवत्ता परीक्षण।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "icon": "flask"
+        },
+        {
+          "title": { "en": "Plant Hygiene Audit", "hi": "प्लांट स्वच्छता ऑडिट", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "प्लांट स्वच्छता ऑडिट", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "description": { "en": "BIS and FSSAI audit of production facilities for hygiene and safety.", "hi": "स्वच्छता और सुरक्षा के लिए उत्पादन सुविधाओं का BIS और FSSAI ऑडिट।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "icon": "shield-check"
+        },
+        {
+          "title": { "en": "Certification", "hi": "प्रमाणीकरण", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "प्रमाणीकरण", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "description": { "en": "Receive ISI mark certification for food products.", "hi": "खाद्य उत्पादों के लिए ISI मार्क प्रमाणीकरण प्राप्त करें।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" },
+          "icon": "award"
+        }
+      ],
+      "relatedStandards": ["IS 14543", "IS 13428", "IS 4251"],
+      "content": {
+        "en": "Food & Beverage products in India require compliance with both BIS standards and FSSAI regulations. Key mandatory certifications include packaged drinking water (IS 14543), salt (IS 254), and infant foods. BIS certification ensures product quality and safety for consumers.",
+        "hi": "भारत में खाद्य और पेय पदार्थ उत्पादों को BIS मानकों और FSSAI नियमों दोनों का पालन करना आवश्यक है।",
+        "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌"
+      },
+      "overview": {
+        "en": "Guide for Food & Beverage product certification under BIS",
+        "hi": "BIS के तहत खाद्य और पेय पदार्थ उत्पाद प्रमाणीकरण के लिए मार्गदर्शिका",
+        "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌"
+      },
+      "avgTimeline": 63,
+      "avgCost": 20500
+    },
+    {
+      "id": "furniture",
+      "vertical": "Furniture",
+      "coverImage": "/images/guides/furniture.webp",
+      "stages": [
+        { "title": { "en": "Standard Identification", "hi": "मानक पहचान", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "मानक ओळख", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "Identify applicable IS for your furniture type (e.g. IS 1811 for office desks, IS 2452 for chairs).", "hi": "अपने फर्नीचर प्रकार के लिए लागू IS पहचानें।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "search" },
+        { "title": { "en": "Sample Preparation", "hi": "नमूना तैयारी", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "नमुना तयारी", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "Prepare representative samples for laboratory testing.", "hi": "प्रयोगशाला परीक्षण के लिए प्रतिनिधि नमूने तैयार करें।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "package" },
+        { "title": { "en": "Physical Testing", "hi": "भौतिक परीक्षण", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "भौतिक चाचणी", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "Strength, durability, dimensional, and stability testing at accredited labs.", "hi": "मान्यता प्राप्त प्रयोगशालाओं में शक्ति, स्थायित्व, आयामी और स्थिरता परीक्षण।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "wrench" },
+        { "title": { "en": "Factory Inspection", "hi": "कारखाना निरीक्षण", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "कारखाना तपासणी", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "BIS inspection of manufacturing unit and quality processes.", "hi": "विनिर्माण इकाई और गुणवत्ता प्रक्रियाओं का BIS निरीक्षण।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "building" },
+        { "title": { "en": "Mark Licence", "hi": "मार्क लाइसेंस", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "मार्क परवाना", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "Receive IS mark licence for your furniture products.", "hi": "अपने फर्नीचर उत्पादों के लिए IS मार्क लाइसेंस प्राप्त करें।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "award" }
+      ],
+      "relatedStandards": ["IS 1811", "IS 10321", "IS 14074"],
+      "content": {
+        "en": "Furniture certification under BIS is largely voluntary, but provides market advantage. Key standards cover office furniture (IS 1811), chairs (IS 2452), school furniture, and steel furniture. Certification demonstrates quality and builds buyer confidence.",
+        "hi": "BIS के तहत फर्नीचर प्रमाणीकरण काफी हद तक स्वैच्छिक है, लेकिन बाजार में लाभ प्रदान करता है।",
+        "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌"
+      },
+      "overview": {
+        "en": "Guide for Furniture product certification under BIS",
+        "hi": "BIS के तहत फर्नीचर उत्पाद प्रमाणीकरण के लिए मार्गदर्शिका",
+        "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌"
+      },
+      "avgTimeline": 45,
+      "avgCost": 12500
+    },
+    {
+      "id": "textiles",
+      "vertical": "Textiles",
+      "coverImage": "/images/guides/textiles.webp",
+      "stages": [
+        { "title": { "en": "Yarn/Fabric Classification", "hi": "यार्न/कपड़ा वर्गीकरण", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "धागा/कापड वर्गीकरण", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "Identify the applicable IS for your textile product type.", "hi": "अपने वस्त्र उत्पाद प्रकार के लिए लागू IS पहचानें।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "scissors" },
+        { "title": { "en": "Sample Collection", "hi": "नमूना संग्रह", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "नमुना संकलन", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "Collect representative samples from production batches.", "hi": "उत्पादन बैच से प्रतिनिधि नमूने एकत्र करें।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "package" },
+        { "title": { "en": "Textile Testing", "hi": "वस्त्र परीक्षण", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "वस्त्र चाचणी", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "Physical, chemical, and performance testing per relevant IS.", "hi": "संबंधित IS के अनुसार भौतिक, रासायनिक और प्रदर्शन परीक्षण।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "flask" },
+        { "title": { "en": "Mill Audit", "hi": "मिल ऑडिट", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "मिल ऑडिट", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "BIS inspection of the textile manufacturing unit.", "hi": "वस्त्र विनिर्माण इकाई का BIS निरीक्षण।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "building" },
+        { "title": { "en": "Certification", "hi": "प्रमाणीकरण", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "प्रमाणीकरण", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "Obtain IS certification for textile products.", "hi": "वस्त्र उत्पादों के लिए IS प्रमाणीकरण प्राप्त करें।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "award" }
+      ],
+      "relatedStandards": ["IS 1151", "IS 1670", "IS 3442"],
+      "content": {
+        "en": "India's textile sector has hundreds of applicable BIS standards covering yarns, fabrics, garments, and technical textiles. Most are voluntary but increasingly required by government procurement and export markets.",
+        "hi": "भारत के वस्त्र क्षेत्र में यार्न, कपड़े, परिधान और तकनीकी वस्त्रों को कवर करने वाले सैकड़ों लागू BIS मानक हैं।",
+        "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌"
+      },
+      "overview": {
+        "en": "Guide for Textiles certification under BIS",
+        "hi": "BIS के तहत वस्त्र प्रमाणीकरण के लिए मार्गदर्शिका",
+        "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌"
+      },
+      "avgTimeline": 45,
+      "avgCost": 8500
+    },
+    {
+      "id": "steel-metal",
+      "vertical": "Steel and Metal",
+      "coverImage": "/images/guides/steel.webp",
+      "stages": [
+        { "title": { "en": "Grade Classification", "hi": "ग्रेड वर्गीकरण", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "ग्रेड वर्गीकरण", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "Identify applicable IS based on steel/metal grade and application.", "hi": "स्टील/धातु ग्रेड और अनुप्रयोग के आधार पर लागू IS पहचानें।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "layers" },
+        { "title": { "en": "Heat/Batch Testing", "hi": "हीट/बैच परीक्षण", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "हीट/बॅच चाचणी", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "Chemical composition and mechanical property testing of steel products.", "hi": "स्टील उत्पादों का रासायनिक संरचना और यांत्रिक गुण परीक्षण।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "flask" },
+        { "title": { "en": "Plant Assessment", "hi": "प्लांट मूल्यांकन", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "प्लांट मूल्यांकन", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "Assessment of steel plant capabilities and quality systems.", "hi": "स्टील प्लांट क्षमताओं और गुणवत्ता प्रणालियों का मूल्यांकन।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "factory" },
+        { "title": { "en": "ISI Mark Licence", "hi": "ISI मार्क लाइसेंस", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "ISI मार्क परवाना", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "Obtain ISI mark licence for steel and metal products.", "hi": "स्टील और धातु उत्पादों के लिए ISI मार्क लाइसेंस प्राप्त करें।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "award" }
+      ],
+      "relatedStandards": ["IS 2082", "IS 1239", "IS 9295"],
+      "content": {
+        "en": "Steel and metal products have one of the highest compliance requirements under BIS. TMT bars (IS 1786), cement (IS 269), and structural steel are mandatory. BIS certification is required for government infrastructure projects and public safety.",
+        "hi": "स्टील और धातु उत्पादों में BIS के तहत सबसे अधिक अनुपालन आवश्यकताएं हैं।",
+        "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌"
+      },
+      "overview": {
+        "en": "Guide for Steel & Metal product certification under BIS",
+        "hi": "BIS के तहत स्टील और धातु उत्पाद प्रमाणीकरण के लिए मार्गदर्शिका",
+        "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌"
+      },
+      "avgTimeline": 70,
+      "avgCost": 38000
+    },
+    {
+      "id": "chemicals",
+      "vertical": "Chemicals",
+      "coverImage": "/images/guides/chemicals.webp",
+      "stages": [
+        { "title": { "en": "Chemical Classification", "hi": "रासायनिक वर्गीकरण", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "रासायनिक वर्गीकरण", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "Determine applicable IS and mandatory/voluntary status for your chemical product.", "hi": "अपने रासायनिक उत्पाद के लिए लागू IS और अनिवार्य/स्वैच्छिक स्थिति निर्धारित करें।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "beaker" },
+        { "title": { "en": "Safety Data Review", "hi": "सुरक्षा डेटा समीक्षा", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "सुरक्षा डेटा पुनरावलोकन", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "Prepare MSDS and safety documentation for chemical product.", "hi": "रासायनिक उत्पाद के लिए MSDS और सुरक्षा दस्तावेज तैयार करें।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "file-text" },
+        { "title": { "en": "Chemical Analysis", "hi": "रासायनिक विश्लेषण", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "रासायनिक विश्लेषण", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "Complete chemical composition and performance testing.", "hi": "पूर्ण रासायनिक संरचना और प्रदर्शन परीक्षण।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "flask" },
+        { "title": { "en": "Plant Audit", "hi": "प्लांट ऑडिट", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "प्लांट ऑडिट", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "BIS inspection of chemical manufacturing plant.", "hi": "रासायनिक विनिर्माण संयंत्र का BIS निरीक्षण।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "building" },
+        { "title": { "en": "Certification", "hi": "प्रमाणीकरण", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "प्रमाणीकरण", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "description": { "en": "Receive ISI mark certification for chemical products.", "hi": "रासायनिक उत्पादों के लिए ISI मार्क प्रमाणीकरण प्राप्त करें।", "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌" }, "icon": "award" }
+      ],
+      "relatedStandards": ["IS 9103", "IS 3812", "IS 8112"],
+      "content": {
+        "en": "Chemical products require BIS certification for construction chemicals (IS 9103), LPG cylinders (IS 3196), and various industrial chemicals. Environmental clearances and safety data sheets must accompany applications.",
+        "hi": "रासायनिक उत्पादों को निर्माण रसायनों, LPG सिलेंडरों और विभिन्न औद्योगिक रसायनों के लिए BIS प्रमाणीकरण की आवश्यकता होती है।",
+        "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌"
+      },
+      "overview": {
+        "en": "Guide for Chemicals certification under BIS",
+        "hi": "BIS के तहत रासायनिक प्रमाणीकरण के लिए मार्गदर्शिका",
+        "ta": "TA‌", "te": "TA‌", "kn": "TA‌", "ml": "TA‌", "mr": "TA‌", "gu": "TA‌", "pa": "TA‌", "bn": "TA‌", "or": "TA‌"
+      },
+      "avgTimeline": 73,
+      "avgCost": 28500
+    }
+  ]
+}

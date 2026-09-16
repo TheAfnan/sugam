@@ -1,0 +1,156 @@
+{
+  "offices": [
+    {
+      "id": "bis-new-delhi-hq",
+      "name": "BIS Headquarters",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "pinCode": "110002",
+      "streetAddress": "Manak Bhavan, 9 Bahadur Shah Zafar Marg",
+      "phone": "011-23230131",
+      "email": "headbis@bis.gov.in",
+      "operatingHours": [
+        { "day": "Mon", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Tue", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Wed", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Thu", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Fri", "openTime": "09:30", "closeTime": "18:00" }
+      ],
+      "services": ["IS Certification", "Hallmarking", "Foreign Standards", "BIS Publications", "Complaints", "Laboratory Testing", "Training"],
+      "coordinates": { "lat": 28.6384, "lng": 77.2402 }
+    },
+    {
+      "id": "bis-mumbai",
+      "name": "BIS Western Regional Office",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "pinCode": "400020",
+      "streetAddress": "Plot No E-9, MIDC, Andheri East",
+      "phone": "022-26870421",
+      "email": "wro@bis.gov.in",
+      "operatingHours": [
+        { "day": "Mon", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Tue", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Wed", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Thu", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Fri", "openTime": "09:30", "closeTime": "18:00" }
+      ],
+      "services": ["IS Certification", "Hallmarking", "Product Testing", "Surveillance", "Consumer Complaints"],
+      "coordinates": { "lat": 19.1150, "lng": 72.8710 }
+    },
+    {
+      "id": "bis-kolkata",
+      "name": "BIS Eastern Regional Office",
+      "city": "Kolkata",
+      "state": "West Bengal",
+      "pinCode": "700091",
+      "streetAddress": "Block DN, Sector V, Salt Lake City",
+      "phone": "033-23677120",
+      "email": "ero@bis.gov.in",
+      "operatingHours": [
+        { "day": "Mon", "openTime": "09:30", "closeTime": "17:30" },
+        { "day": "Tue", "openTime": "09:30", "closeTime": "17:30" },
+        { "day": "Wed", "openTime": "09:30", "closeTime": "17:30" },
+        { "day": "Thu", "openTime": "09:30", "closeTime": "17:30" },
+        { "day": "Fri", "openTime": "09:30", "closeTime": "17:30" }
+      ],
+      "services": ["IS Certification", "Hallmarking", "BIS Publications", "Consumer Complaints"],
+      "coordinates": { "lat": 22.5697, "lng": 88.4324 }
+    },
+    {
+      "id": "bis-chennai",
+      "name": "BIS Southern Regional Office",
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "pinCode": "600113",
+      "streetAddress": "IV Cross Street, CIT Campus, Taramani",
+      "phone": "044-22541248",
+      "email": "sro@bis.gov.in",
+      "operatingHours": [
+        { "day": "Mon", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Tue", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Wed", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Thu", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Fri", "openTime": "09:30", "closeTime": "18:00" }
+      ],
+      "services": ["IS Certification", "Hallmarking", "Laboratory Testing", "Consumer Complaints", "BIS Publications"],
+      "coordinates": { "lat": 12.9883, "lng": 80.2458 }
+    },
+    {
+      "id": "bis-bangalore",
+      "name": "BIS Branch Office Bengaluru",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "pinCode": "560001",
+      "streetAddress": "No. 1, 2nd Floor, Acharya Vihar, Cunningham Road",
+      "phone": "080-22262741",
+      "email": "bangalore@bis.gov.in",
+      "operatingHours": [
+        { "day": "Mon", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Tue", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Wed", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Thu", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Fri", "openTime": "09:30", "closeTime": "18:00" }
+      ],
+      "services": ["IS Certification", "Product Surveillance", "Consumer Complaints"],
+      "coordinates": { "lat": 12.9716, "lng": 77.5946 }
+    },
+    {
+      "id": "bis-hyderabad",
+      "name": "BIS Branch Office Hyderabad",
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "pinCode": "500004",
+      "streetAddress": "Plot No 12, Nacharam Industrial Area",
+      "phone": "040-27263760",
+      "email": "hyderabad@bis.gov.in",
+      "operatingHours": [
+        { "day": "Mon", "openTime": "09:30", "closeTime": "17:30" },
+        { "day": "Tue", "openTime": "09:30", "closeTime": "17:30" },
+        { "day": "Wed", "openTime": "09:30", "closeTime": "17:30" },
+        { "day": "Thu", "openTime": "09:30", "closeTime": "17:30" },
+        { "day": "Fri", "openTime": "09:30", "closeTime": "17:30" }
+      ],
+      "services": ["IS Certification", "Hallmarking", "Consumer Complaints"],
+      "coordinates": { "lat": 17.4065, "lng": 78.4772 }
+    },
+    {
+      "id": "bis-ahmedabad",
+      "name": "BIS Branch Office Ahmedabad",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
+      "pinCode": "380006",
+      "streetAddress": "Pushpak, 2nd Floor, Nr. Navrangpura Post Office",
+      "phone": "079-26582985",
+      "email": "ahmedabad@bis.gov.in",
+      "operatingHours": [
+        { "day": "Mon", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Tue", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Wed", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Thu", "openTime": "09:30", "closeTime": "18:00" },
+        { "day": "Fri", "openTime": "09:30", "closeTime": "18:00" }
+      ],
+      "services": ["IS Certification", "Hallmarking", "Product Testing", "Consumer Complaints"],
+      "coordinates": { "lat": 23.0355, "lng": 72.5632 }
+    },
+    {
+      "id": "bis-chandigarh",
+      "name": "BIS Branch Office Chandigarh",
+      "city": "Chandigarh",
+      "state": "Punjab",
+      "pinCode": "160022",
+      "streetAddress": "Plot No. 131-132, Industrial Area Phase 1",
+      "phone": "0172-2644313",
+      "email": "chandigarh@bis.gov.in",
+      "operatingHours": [
+        { "day": "Mon", "openTime": "09:30", "closeTime": "17:30" },
+        { "day": "Tue", "openTime": "09:30", "closeTime": "17:30" },
+        { "day": "Wed", "openTime": "09:30", "closeTime": "17:30" },
+        { "day": "Thu", "openTime": "09:30", "closeTime": "17:30" },
+        { "day": "Fri", "openTime": "09:30", "closeTime": "17:30" }
+      ],
+      "services": ["IS Certification", "Consumer Complaints", "BIS Publications"],
+      "coordinates": { "lat": 30.7333, "lng": 76.7794 }
+    }
+  ]
+}
