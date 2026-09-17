@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { 
   Shield, Search, Bell, Sparkles, CheckCircle2, ChevronRight, 
   FlaskConical, FileText, MapPin, AlertCircle, ArrowRight, 
@@ -8,12 +9,16 @@ import {
   Settings, HelpCircle, ExternalLink, Download, Check, AlertTriangle,
   FileCheck, Building2, User, Mic, MicOff, RefreshCw, Eye, ThumbsUp,
   X, Scale, ChevronDown, CheckSquare, Square, Info, Clock, DollarSign,
-  Share2, Printer, BookOpen, Send, Languages, Globe, Volume2
+  Share2, Printer, BookOpen, Send, Languages, Globe, Volume2,
+  LogIn, UserPlus, LogOut
 } from 'lucide-react';
 import { BIS_STANDARDS_DB, VERIFIED_LICENSES_DB, REGULATORY_UPDATES, BISStandard } from '@/lib/sugam-data';
 import { BHASHINI_LANGUAGES, REGIONAL_GREETINGS } from '@/lib/bhashini';
+import { useAuth } from '@/lib/useAuth';
 
 export default function SugamApp() {
+  const { user, isAuthenticated, logout } = useAuth();
+
   // Navigation State
   const [activeTab, setActiveTab] = useState<string>('dashboard');
   const [selectedStandard, setSelectedStandard] = useState<BISStandard>(BIS_STANDARDS_DB[0]);
@@ -270,6 +275,48 @@ export default function SugamApp() {
                 </button>
               );
             })}
+
+            {/* Auth Navigation Links */}
+            <div className="pt-2 mt-2 border-t border-slate-800/60">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 px-3.5 mb-1">
+                Account & Portal
+              </div>
+              {isAuthenticated ? (
+                <div className="space-y-1">
+                  <Link
+                    href="/dashboard"
+                    className="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium text-blue-300 hover:bg-slate-800/60 hover:text-white transition-all"
+                  >
+                    <Home className="w-4 h-4 text-blue-400" />
+                    <span>My Dashboard</span>
+                  </Link>
+                  <button
+                    onClick={logout}
+                    className="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium text-red-400 hover:bg-red-950/30 hover:text-red-300 transition-all text-left"
+                  >
+                    <LogOut className="w-4 h-4 text-red-400" />
+                    <span>Sign Out</span>
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-1">
+                  <Link
+                    href="/login"
+                    className="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium text-slate-300 hover:bg-slate-800/60 hover:text-white transition-all"
+                  >
+                    <LogIn className="w-4 h-4 text-blue-400" />
+                    <span>Sign In</span>
+                  </Link>
+                  <Link
+                    href="/signup"
+                    className="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-semibold text-white bg-blue-600/80 hover:bg-blue-600 transition-all shadow-sm"
+                  >
+                    <UserPlus className="w-4 h-4 text-white" />
+                    <span>Create Account</span>
+                  </Link>
+                </div>
+              )}
+            </div>
           </nav>
         </div>
 
@@ -364,28 +411,62 @@ export default function SugamApp() {
               </span>
             </button>
 
-            {/* User Profile Chip with Role Dropdown */}
-            <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
-              <div className="w-8 h-8 rounded-full bg-[#1b2559] text-white flex items-center justify-center font-bold text-xs shadow-xs">
-                A
+            {/* Auth / Account Controls */}
+            {isAuthenticated ? (
+              <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
+                <Link
+                  href="/dashboard"
+                  className="flex items-center gap-2 hover:opacity-85 transition group"
+                  title="Go to Dashboard"
+                >
+                  <div className="w-8 h-8 rounded-full bg-[#1b2559] text-white flex items-center justify-center font-bold text-xs shadow-xs group-hover:ring-2 group-hover:ring-blue-400">
+                    {(user?.name || 'A').charAt(0).toUpperCase()}
+                  </div>
+                  <div className="hidden md:block text-left text-xs">
+                    <div className="font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                      {user?.name || 'Afnan'}
+                    </div>
+                    <div className="text-[11px] text-slate-500 font-medium capitalize">
+                      {user?.role || (userRole === 'manufacturer' ? 'Manufacturer' : userRole === 'officer' ? 'BIS Officer' : 'Citizen')}
+                    </div>
+                  </div>
+                </Link>
+                <select
+                  value={userRole}
+                  onChange={(e: any) => setUserRole(e.target.value)}
+                  className="text-xs bg-transparent border-0 text-slate-500 cursor-pointer focus:ring-0 p-0 pr-1 font-medium hidden sm:inline-block"
+                  title="Switch Persona"
+                >
+                  <option value="manufacturer">MSME Mfr</option>
+                  <option value="officer">BIS Officer</option>
+                  <option value="consumer">Consumer</option>
+                </select>
+                <button
+                  onClick={logout}
+                  className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition"
+                  title="Sign Out"
+                >
+                  <LogOut className="w-4 h-4" />
+                </button>
               </div>
-              <div className="hidden md:block text-left text-xs">
-                <div className="font-bold text-slate-800">Afnan</div>
-                <div className="text-[11px] text-slate-500 font-medium capitalize">
-                  {userRole === 'manufacturer' ? 'Manufacturer' : userRole === 'officer' ? 'BIS Officer' : 'Citizen'}
-                </div>
+            ) : (
+              <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
+                <Link
+                  href="/login"
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-blue-600 hover:bg-slate-100 rounded-lg transition"
+                >
+                  <LogIn className="w-3.5 h-3.5" />
+                  <span>Sign In</span>
+                </Link>
+                <Link
+                  href="/signup"
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm transition"
+                >
+                  <UserPlus className="w-3.5 h-3.5" />
+                  <span>Create Account</span>
+                </Link>
               </div>
-              <select
-                value={userRole}
-                onChange={(e: any) => setUserRole(e.target.value)}
-                className="text-xs bg-transparent border-0 text-slate-500 cursor-pointer focus:ring-0 p-0 pr-1 font-medium"
-                title="Switch Persona"
-              >
-                <option value="manufacturer">MSME Mfr</option>
-                <option value="officer">BIS Officer</option>
-                <option value="consumer">Consumer</option>
-              </select>
-            </div>
+            )}
 
             {/* BIS Official Header Graphic with Tricolor Strip */}
             <div className="hidden lg:flex items-center gap-2.5 pl-3 border-l border-slate-200">
