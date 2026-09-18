@@ -17,7 +17,7 @@ import { BHASHINI_LANGUAGES, REGIONAL_GREETINGS } from '@/lib/bhashini';
 import { useAuth } from '@/lib/useAuth';
 
 export default function SugamApp() {
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, isAuthenticated, logout, switchRole } = useAuth();
 
   // Navigation State
   const [activeTab, setActiveTab] = useState<string>('dashboard');
@@ -432,14 +432,15 @@ export default function SugamApp() {
                   </div>
                 </Link>
                 <select
-                  value={userRole}
-                  onChange={(e: any) => setUserRole(e.target.value)}
-                  className="text-xs bg-transparent border-0 text-slate-500 cursor-pointer focus:ring-0 p-0 pr-1 font-medium hidden sm:inline-block"
-                  title="Switch Persona"
+                  value={user?.role || 'msme'}
+                  onChange={(e: any) => switchRole(e.target.value)}
+                  className="text-xs bg-slate-100 px-2 py-1 rounded-lg border border-slate-200 text-slate-700 cursor-pointer font-bold hidden sm:inline-block"
+                  title="Switch Persona (SIH Demo Mode)"
                 >
-                  <option value="manufacturer">MSME Mfr</option>
-                  <option value="officer">BIS Officer</option>
-                  <option value="consumer">Consumer</option>
+                  <option value="msme">🏭 MSME Mfr</option>
+                  <option value="applicant">🚀 Applicant</option>
+                  <option value="consumer">👥 Consumer</option>
+                  <option value="officer">🛡️ BIS Officer</option>
                 </select>
                 <button
                   onClick={logout}

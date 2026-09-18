@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,20 +12,53 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Accept demo credentials or any test account
-    const isDemo = email.toLowerCase() === 'demo@bis-assistant.com' || email.toLowerCase() === 'demo@sugam.ai';
+    const normalizedEmail = email.toLowerCase();
+    const isDemo = 
+      normalizedEmail === 'demo@bis-assistant.com' || 
+      normalizedEmail === 'demo@sugam.ai' ||
+      normalizedEmail === 'msme@sugam.ai' ||
+      normalizedEmail === 'applicant@sugam.ai' ||
+      normalizedEmail === 'consumer@sugam.ai' ||
+      normalizedEmail === 'officer@bis.gov.in';
+
     const isPasswordValid = password === 'demo123' || password.length >= 6;
 
     if (isDemo || isPasswordValid) {
-      const name = isDemo ? 'Demo User' : email.split('@')[0].replace('.', ' ');
+      let role = 'msme';
+      let name = 'Rajesh Sharma';
+      let designation = 'Managing Director';
+      let companyName = 'Bharat Precision Fasteners Pvt Ltd';
+
+      if (normalizedEmail.includes('officer')) {
+        role = 'officer';
+        name = 'Dr. Vikram Malhotra';
+        designation = 'Scientist-E & Joint Director (Surveillance)';
+        companyName = 'Bureau of Indian Standards';
+      } else if (normalizedEmail.includes('applicant')) {
+        role = 'applicant';
+        name = 'Aanya Verma';
+        designation = 'Co-Founder & CEO';
+        companyName = 'NexGen AgroTech Innovations';
+      } else if (normalizedEmail.includes('consumer')) {
+        role = 'consumer';
+        name = 'Pooja Iyer';
+        designation = 'Aware Citizen & Consumer';
+        companyName = 'Citizen';
+      } else if (!isDemo) {
+        const rawName = email.split('@')[0].replace('.', ' ');
+        name = rawName.charAt(0).toUpperCase() + rawName.slice(1);
+      }
+
       const user = {
-        id: '1',
-        email,
-        name: name.charAt(0).toUpperCase() + name.slice(1),
-        role: 'user',
-        companyName: 'Bharat Standards Manufacturing Corp.',
-        companyType: 'msme',
-        industry: 'Electronics',
+        id: 'user-' + role + '-01',
+        email: normalizedEmail,
+        name,
+        role,
+        designation,
+        companyName,
+        companyType: role === 'msme' ? 'Small Enterprise' : role === 'applicant' ? 'Startup' : undefined,
+        cmNumber: role === 'msme' ? 'CM/L-8400174109' : undefined,
+        udyamNumber: role === 'msme' ? 'UDYAM-DL-01-0029481' : role === 'applicant' ? 'UDYAM-UP-02-0089123' : undefined,
         preferences: {
           language: 'en',
           notifications: true,
