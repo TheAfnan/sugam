@@ -16,14 +16,10 @@ export async function login(formData: FormData) {
   if (error) return { error: error.message }
 
   const { data: { user } } = await supabase.auth.getUser()
-  const role = user?.user_metadata?.role || 'student'
+  const role = user?.user_metadata?.role || 'msme'
 
   revalidatePath('/', 'layout')
-  if (role === 'admin' || role === 'faculty') {
-    redirect('/admin')
-  } else {
-    redirect('/dashboard')
-  }
+  redirect(`/dashboard/${role}`)
 }
 
 export async function register(formData: FormData) {

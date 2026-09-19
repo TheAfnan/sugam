@@ -1,9 +1,10 @@
-﻿import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { createClient } from '@/lib/supabase/server';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, password, companyName, companyType } = body;
+    const { name, email, password, companyName, companyType, role = 'msme' } = body;
 
     if (!name || !email || !password) {
       return NextResponse.json(
@@ -12,11 +13,40 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const normalizedEmail = email.toLowerCase().trim();
+
+    // 1. Try Supabase signUp
+    let supabaseUserId: string | null = null;
+    try {
+      const supabase = await createClient();
+      const { data, error } = await supabase.auth.signUp({
+        email: normalizedEmail,
+        password,
+        options: {
+          data: {
+            full_name: name,
+            name,
+            companyName: companyName || 'My Enterprise',
+            companyType: companyType || 'Enterprise',
+            role,
+          },
+        },
+      });
+
+      if (error) {
+        console.warn('Supabase signUp error (falling back gracefully):', error.message);
+      } else if (data?.user) {
+        supabaseUserId = data.user.id;
+      }
+    } catch (sbErr) {
+      console.warn('Supabase signUp exception:', sbErr);
+    }
+
     const user = {
-      id: Date.now().toString(),
-      email,
+      id: supabaseUserId || 'user-' + Date.now(),
+      email: normalizedEmail,
       name,
-      role: 'user',
+      role: role || 'msme',
       companyName: companyName || 'My Enterprise',
       companyType: companyType || 'individual',
       industry: 'General',
@@ -28,7 +58,7 @@ export async function POST(request: NextRequest) {
       },
       subscription: {
         plan: 'free',
-        features: ['basic-chat', 'standards-search', 'timeline-calculator'],
+        features: ['basic-chat', 'standards-search', 'timeline-calculator', 'dossier-download'],
       },
       stats: {
         totalChats: 0,
