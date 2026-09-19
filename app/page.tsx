@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { 
   Shield, Search, Bell, Sparkles, CheckCircle2, ChevronRight, 
@@ -15,9 +15,22 @@ import {
 import { BIS_STANDARDS_DB, VERIFIED_LICENSES_DB, REGULATORY_UPDATES, BISStandard } from '@/lib/sugam-data';
 import { BHASHINI_LANGUAGES, REGIONAL_GREETINGS } from '@/lib/bhashini';
 import { useAuth } from '@/lib/useAuth';
+import GithubBisAuth from '@/components/auth/GithubBisAuth';
 
 export default function SugamApp() {
   const { user, isAuthenticated, logout, switchRole } = useAuth();
+  const [showWelcomeAuthModal, setShowWelcomeAuthModal] = useState<boolean>(false);
+  const [authModalMode, setAuthModalMode] = useState<'signin' | 'signup'>('signin');
+
+  useEffect(() => {
+    // If not authenticated, open the sleek GitHub-style 3D BIS Auth popup on first visit
+    if (!isAuthenticated) {
+      const dismissed = sessionStorage.getItem('bis-auth-welcome-dismissed');
+      if (!dismissed) {
+        setShowWelcomeAuthModal(true);
+      }
+    }
+  }, [isAuthenticated]);
 
   // Navigation State
   const [activeTab, setActiveTab] = useState<string>('dashboard');
@@ -214,8 +227,20 @@ export default function SugamApp() {
   const currentLangObj = BHASHINI_LANGUAGES.find(l => l.code === selectedLanguage) || BHASHINI_LANGUAGES[0];
 
   return (
-    <div className="flex h-screen bg-[#f8fafc] text-slate-900 font-sans antialiased overflow-hidden">
+    <div className="flex h-screen bg-[#f8fafc] text-slate-900 font-sans antialiased overflow-hidden relative">
       
+      {/* 🚀 FIRST POPUP ON WEB VISIT: GitHub-style 3D BIS Auth Modal */}
+      {showWelcomeAuthModal && (
+        <GithubBisAuth
+          isModal={true}
+          initialMode={authModalMode}
+          onClose={() => {
+            setShowWelcomeAuthModal(false);
+            sessionStorage.setItem('bis-auth-welcome-dismissed', 'true');
+          }}
+        />
+      )}
+
       {/* 🟦 LEFT SIDEBAR (CLEAN, NO SIH BADGE, NO TEAM CODE CRUDE AT BOTTOM) */}
       <aside className="w-64 bg-[#0b1739] text-slate-300 flex flex-col justify-between border-r border-slate-800 shrink-0 z-30 select-none">
         <div>
@@ -300,20 +325,28 @@ export default function SugamApp() {
                 </div>
               ) : (
                 <div className="space-y-1">
-                  <Link
-                    href="/login"
-                    className="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium text-slate-300 hover:bg-slate-800/60 hover:text-white transition-all"
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setAuthModalMode('signin');
+                      setShowWelcomeAuthModal(true);
+                    }}
+                    className="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium text-slate-300 hover:bg-slate-800/60 hover:text-white transition-all cursor-pointer text-left"
                   >
                     <LogIn className="w-4 h-4 text-blue-400" />
-                    <span>Sign In</span>
-                  </Link>
-                  <Link
-                    href="/signup"
-                    className="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-semibold text-white bg-blue-600/80 hover:bg-blue-600 transition-all shadow-sm"
+                    <span>Sign In (BIS Secure)</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setAuthModalMode('signup');
+                      setShowWelcomeAuthModal(true);
+                    }}
+                    className="w-full flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-semibold text-white bg-blue-600/80 hover:bg-blue-600 transition-all shadow-sm cursor-pointer text-left"
                   >
                     <UserPlus className="w-4 h-4 text-white" />
                     <span>Create Account</span>
-                  </Link>
+                  </button>
                 </div>
               )}
             </div>
