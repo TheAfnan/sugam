@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ShieldAlert, Lock, ArrowLeft, RefreshCw, UserCheck } from 'lucide-react';
+import { Lock, ArrowLeft, RefreshCw, UserCheck, Shield } from 'lucide-react';
 import { useAuth, UserRole, DEMO_PERSONAS } from '@/lib/useAuth';
 
 interface RoleGuardProps {
@@ -12,11 +12,11 @@ interface RoleGuardProps {
 }
 
 const ROLE_LABELS: Record<UserRole, { label: string; badgeColor: string }> = {
-  msme: { label: 'MSME Manufacturer', badgeColor: 'bg-amber-100 text-amber-800 border-amber-300' },
-  applicant: { label: 'First-Time Applicant', badgeColor: 'bg-blue-100 text-blue-800 border-blue-300' },
-  consumer: { label: 'Consumer / Citizen', badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300' },
-  officer: { label: 'BIS Technical Officer', badgeColor: 'bg-purple-100 text-purple-800 border-purple-300' },
-  admin: { label: 'Portal Administrator', badgeColor: 'bg-red-100 text-red-800 border-red-300' },
+  msme: { label: 'MSME Factory Owner', badgeColor: 'bg-amber-50 text-amber-800 border-amber-200' },
+  applicant: { label: 'New Business / Startup', badgeColor: 'bg-blue-50 text-blue-800 border-blue-200' },
+  consumer: { label: 'Consumer & Citizen', badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-200' },
+  officer: { label: 'BIS Quality Officer', badgeColor: 'bg-indigo-50 text-indigo-800 border-indigo-200' },
+  admin: { label: 'Portal Admin', badgeColor: 'bg-slate-100 text-slate-800 border-slate-300' },
 };
 
 export default function RoleGuard({ allowedRoles, children }: RoleGuardProps) {
@@ -25,28 +25,28 @@ export default function RoleGuard({ allowedRoles, children }: RoleGuardProps) {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[400px] text-gray-500 space-y-3">
+      <div className="flex flex-col items-center justify-center min-h-[400px] text-slate-500 space-y-3">
         <div className="w-10 h-10 border-4 border-teal-600 border-t-transparent rounded-full animate-spin"></div>
-        <p className="text-xs font-semibold tracking-wide uppercase text-gray-400">Verifying Role Clearance...</p>
+        <p className="text-xs font-semibold text-slate-400">Loading your portal...</p>
       </div>
     );
   }
 
   if (!isAuthenticated || !user) {
     return (
-      <div className="max-w-md mx-auto my-12 p-8 bg-white rounded-2xl shadow-xl border border-gray-100 text-center space-y-4">
-        <div className="w-14 h-14 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center mx-auto shadow-sm">
-          <Lock className="w-7 h-7" />
+      <div className="max-w-md mx-auto my-14 p-8 bg-white rounded-3xl shadow-sm border border-slate-200 text-center space-y-4">
+        <div className="w-12 h-12 bg-teal-50 text-teal-700 rounded-2xl flex items-center justify-center mx-auto">
+          <Lock className="w-6 h-6" />
         </div>
-        <h2 className="text-xl font-bold text-gray-900">Authentication Required</h2>
-        <p className="text-xs text-gray-500 leading-relaxed">
-          Please sign in with your authorized credentials to access this protected BIS portal.
+        <h2 className="text-lg font-bold text-slate-900">Please Sign In First</h2>
+        <p className="text-xs text-slate-500 leading-relaxed">
+          Sign in to view your personalized dashboard and saved standards.
         </p>
         <Link
           href="/login"
-          className="inline-block w-full py-2.5 px-4 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs font-semibold shadow-sm transition-all"
+          className="inline-block w-full py-2.5 px-4 bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs font-bold shadow-xs transition"
         >
-          Sign In Now
+          Go to Sign In
         </Link>
       </div>
     );
@@ -56,80 +56,74 @@ export default function RoleGuard({ allowedRoles, children }: RoleGuardProps) {
   const isAllowed = allowedRoles.includes(currentRole);
 
   if (!isAllowed) {
-    const currentMeta = ROLE_LABELS[currentRole] || { label: currentRole, badgeColor: 'bg-gray-100 text-gray-800 border-gray-300' };
+    const currentMeta = ROLE_LABELS[currentRole] || { label: currentRole, badgeColor: 'bg-slate-100 text-slate-800 border-slate-200' };
 
     return (
-      <div className="max-w-2xl mx-auto my-10 p-8 bg-white rounded-3xl shadow-xl border-2 border-red-100 relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-red-500 via-amber-500 to-red-600"></div>
+      <div className="max-w-2xl mx-auto my-10 p-8 bg-white rounded-3xl shadow-sm border border-slate-200 relative overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-teal-500 via-blue-500 to-indigo-500"></div>
 
         <div className="text-center space-y-4">
-          <div className="w-16 h-16 bg-red-100 text-red-600 rounded-3xl flex items-center justify-center mx-auto shadow-md shadow-red-500/10">
-            <ShieldAlert className="w-8 h-8 stroke-[2.2]" />
+          <div className="w-14 h-14 bg-slate-100 text-slate-700 rounded-2xl flex items-center justify-center mx-auto">
+            <Shield className="w-7 h-7 text-teal-700" />
           </div>
 
           <div>
-            <span className="inline-block px-3 py-1 bg-red-50 border border-red-200 text-red-700 rounded-full text-[11px] font-extrabold uppercase tracking-wider mb-2">
-              Strict Role Isolation Active
+            <span className="inline-block px-3 py-1 bg-slate-100 text-slate-700 border border-slate-200 rounded-full text-[11px] font-bold uppercase tracking-wider mb-2">
+              Private Page
             </span>
-            <h2 className="text-2xl font-black text-gray-900 tracking-tight">
-              Access Denied: Restricted Portal
+            <h2 className="text-xl font-extrabold text-slate-900 tracking-tight">
+              This Page is for a Different Profile
             </h2>
-            <p className="text-xs text-gray-500 max-w-lg mx-auto mt-2 leading-relaxed">
-              Under Bureau of Indian Standards (BIS) governance protocol, cross-persona access between regulated manufacturers, applicants, enforcement officers, and citizens is strictly isolated.
+            <p className="text-xs text-slate-500 max-w-md mx-auto mt-1 leading-relaxed">
+              Each user type has its own customized page. You are currently signed in as a <strong>{currentMeta.label}</strong>.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-200 text-left text-xs">
-            <div className="p-3 bg-white rounded-xl border border-slate-200/80 shadow-2xs">
-              <div className="text-[10px] uppercase font-bold text-slate-400 mb-1">Your Active Role</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-200/80 text-left text-xs">
+            <div className="p-3 bg-white rounded-xl border border-slate-200">
+              <div className="text-[10px] uppercase font-bold text-slate-400 mb-1">Your Current Profile</div>
               <div className="flex items-center gap-2">
                 <span className={`px-2.5 py-1 rounded-lg border text-xs font-bold ${currentMeta.badgeColor}`}>
                   {currentMeta.label}
                 </span>
               </div>
-              <div className="mt-1 text-[11px] text-gray-600 font-medium truncate">
-                {user.name} ({user.email})
+              <div className="mt-1 text-[11px] text-slate-600 font-medium truncate">
+                {user.name}
               </div>
             </div>
 
-            <div className="p-3 bg-white rounded-xl border border-slate-200/80 shadow-2xs">
-              <div className="text-[10px] uppercase font-bold text-slate-400 mb-1">Clearance Required</div>
+            <div className="p-3 bg-white rounded-xl border border-slate-200">
+              <div className="text-[10px] uppercase font-bold text-slate-400 mb-1">Who Can Open This Page</div>
               <div className="flex items-center gap-1.5 flex-wrap">
                 {allowedRoles.map((r) => (
-                  <span key={r} className={`px-2.5 py-1 rounded-lg border text-xs font-bold ${ROLE_LABELS[r]?.badgeColor || 'bg-blue-50 text-blue-800 border-blue-200'}`}>
+                  <span key={r} className={`px-2.5 py-1 rounded-lg border text-xs font-bold ${ROLE_LABELS[r]?.badgeColor || 'bg-slate-100 text-slate-800'}`}>
                     {ROLE_LABELS[r]?.label || r}
                   </span>
                 ))}
               </div>
-              <div className="mt-1 text-[11px] text-red-600 font-semibold">
-                ❌ Unauthorized for your active persona
-              </div>
             </div>
           </div>
 
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="pt-2">
             <button
               onClick={() => router.push(`/dashboard/${currentRole}`)}
-              className="w-full sm:w-auto px-5 py-2.5 bg-slate-900 hover:bg-black text-white text-xs font-bold rounded-xl shadow-sm transition flex items-center justify-center gap-2 cursor-pointer"
+              className="px-6 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold rounded-xl shadow-xs transition inline-flex items-center gap-2 cursor-pointer"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Return to My Allowed Portal</span>
+              <span>Back to My Dashboard</span>
             </button>
           </div>
 
           <div className="pt-6 border-t border-slate-100 text-left">
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-xs font-bold text-gray-800 flex items-center gap-1.5">
+            <div className="flex items-center justify-between mb-2.5">
+              <div className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
                 <RefreshCw className="w-3.5 h-3.5 text-teal-600" />
-                <span>SIH Demo Mode: Test This Portal Instantly</span>
+                <span>Quick Test: Switch to an Authorized Profile</span>
               </div>
-              <span className="text-[10px] font-semibold text-teal-700 bg-teal-50 px-2 py-0.5 rounded-md border border-teal-200">
-                1-Click Switcher
+              <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
+                1-Click Switch
               </span>
             </div>
-            <p className="text-[11px] text-gray-500 mb-3">
-              Switch to one of the authorized roles below to experience this portal with live mock data:
-            </p>
             <div className="grid grid-cols-2 gap-2">
               {allowedRoles.map((roleKey) => {
                 const persona = DEMO_PERSONAS[roleKey];
@@ -138,14 +132,14 @@ export default function RoleGuard({ allowedRoles, children }: RoleGuardProps) {
                   <button
                     key={roleKey}
                     onClick={() => switchRole(roleKey)}
-                    className="p-2.5 text-left bg-teal-50/60 hover:bg-teal-100/70 border border-teal-200 rounded-xl transition group flex items-start gap-2 cursor-pointer"
+                    className="p-2.5 text-left bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl transition group flex items-start gap-2 cursor-pointer"
                   >
-                    <UserCheck className="w-4 h-4 text-teal-700 shrink-0 mt-0.5" />
+                    <UserCheck className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
                     <div className="min-w-0">
-                      <div className="text-xs font-bold text-teal-900 group-hover:text-teal-950 truncate">
+                      <div className="text-xs font-bold text-slate-900 truncate">
                         {persona.name}
                       </div>
-                      <div className="text-[10px] text-teal-700 truncate">
+                      <div className="text-[10px] text-slate-500 truncate">
                         {ROLE_LABELS[roleKey]?.label}
                       </div>
                     </div>

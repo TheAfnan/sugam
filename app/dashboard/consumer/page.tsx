@@ -5,8 +5,8 @@ import Link from 'next/link';
 import RoleGuard from '@/components/auth/RoleGuard';
 import { useAuth } from '@/lib/useAuth';
 import { 
-  Shield, CheckCircle2, AlertTriangle, QrCode, Search, 
-  MapPin, Camera, Sparkles, ExternalLink, ArrowRight, Bell
+  Shield, CheckCircle2, AlertTriangle, Search, 
+  Sparkles, Bell
 } from 'lucide-react';
 import { VERIFIED_LICENSES_DB } from '@/lib/sugam-data';
 
@@ -26,116 +26,112 @@ export default function ConsumerDashboardPage() {
       setSearchResult({
         invalid: true,
         cmlNumber: cmlSearch,
-        msg: 'No authentic BIS License found matching this CM/L number. Beware of counterfeit ISI mark misuse under Section 14/15 of BIS Act 2016.'
+        msg: 'This license number was not found in official BIS records. This product might be using a fake ISI mark.'
       });
     }
   };
 
   return (
     <RoleGuard allowedRoles={['consumer', 'admin']}>
-      <div className="max-w-7xl mx-auto space-y-8">
+      <div className="max-w-7xl mx-auto space-y-7">
         
-        {/* Welcome Banner */}
-        <div className="bg-gradient-to-r from-emerald-900 via-teal-800 to-slate-900 rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
-          <div className="absolute right-0 top-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
+        {/* Unified Executive Header */}
+        <div className="bg-slate-900 rounded-3xl p-7 text-white shadow-sm border border-slate-800 relative overflow-hidden">
           <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-400/20 border border-emerald-400/30 text-emerald-200 text-xs font-bold mb-3">
-                <Shield className="w-3.5 h-3.5 text-emerald-300" />
-                <span>BIS Care Citizen Quality & Safety Portal</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/20 border border-teal-500/30 text-teal-300 text-xs font-bold mb-2.5">
+                <Shield className="w-3.5 h-3.5" />
+                <span>Consumer Quality & Safety Center</span>
               </div>
               <h1 className="text-2xl md:text-3xl font-black tracking-tight text-white">
-                Consumer Safety Center
+                Check Product Quality & Report Fakes
               </h1>
-              <p className="text-xs md:text-sm text-emerald-100/80 mt-1 max-w-2xl leading-relaxed">
-                Empowering Indian citizens to verify authentic ISI marks, check Gold Hallmarking (HUID), and report counterfeit or substandard products directly to enforcement officers.
+              <p className="text-xs md:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+                Check if an ISI mark on a product is genuine, and easily report fake or unsafe products to the BIS quality team.
               </p>
             </div>
 
             <div className="flex items-center gap-3">
               <Link
                 href="/chat"
-                className="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-xl text-xs font-bold backdrop-blur-md transition flex items-center gap-1.5"
+                className="px-4 py-2 bg-teal-600 hover:bg-teal-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm"
               >
-                <Sparkles className="w-4 h-4 text-emerald-300" />
+                <Sparkles className="w-4 h-4" />
                 <span>Consumer Rights Q&A</span>
               </Link>
             </div>
           </div>
         </div>
 
-        {/* 1. INSTANT BIS MARK VERIFIER */}
-        <div className="p-8 bg-white rounded-3xl border border-slate-200 shadow-2xs space-y-6">
+        {/* 1. INSTANT MARK VERIFIER */}
+        <div className="p-7 bg-white rounded-3xl border border-slate-200 shadow-2xs space-y-5">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-lg font-black text-slate-900">
-                Instant BIS Mark & License Verifier
+                Check Any Product's ISI Mark
               </h3>
-              <p className="text-xs text-slate-500 mt-1">
-                Enter the CM/L number printed under the ISI mark to check licensee legitimacy.
+              <p className="text-xs text-slate-500 mt-0.5">
+                Enter the license number (CM/L) printed under the ISI mark on the product box.
               </p>
             </div>
             <span className="text-[11px] font-bold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-lg border border-teal-200">
-              Live BIS Registry Query
+              Official Database
             </span>
           </div>
 
           <div className="flex gap-3 max-w-xl">
-            <div className="relative flex-1">
-              <input
-                type="text"
-                value={cmlSearch}
-                onChange={(e) => setCmlSearch(e.target.value)}
-                placeholder="Enter 7–10 digit CM/L number (e.g. 8400174109)"
-                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-mono font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-teal-500"
-              />
-            </div>
+            <input
+              type="text"
+              value={cmlSearch}
+              onChange={(e) => setCmlSearch(e.target.value)}
+              placeholder="e.g. 8400174109"
+              className="flex-1 px-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-mono font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
             <button
               onClick={handleVerify}
               className="px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold rounded-2xl shadow-sm transition cursor-pointer"
             >
-              Verify License
+              Verify Now
             </button>
           </div>
 
           {/* Result Card */}
           {searchResult && (
-            <div className={`p-6 rounded-2xl border ${
+            <div className={`p-5 rounded-2xl border ${
               searchResult.invalid 
                 ? 'bg-red-50 border-red-200 text-red-900' 
-                : 'bg-emerald-50/70 border-emerald-200 text-emerald-950'
+                : 'bg-emerald-50/80 border-emerald-200 text-emerald-950'
             }`}>
               {searchResult.invalid ? (
                 <div className="flex items-start gap-3">
                   <AlertTriangle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-sm font-black text-red-900">SUSPICIOUS / INVALID BIS MARK DETECTED</div>
+                    <div className="text-sm font-black text-red-900">WARNING: NOT A VALID BIS LICENSE</div>
                     <p className="text-xs text-red-700 mt-1">{searchResult.msg}</p>
                     <button
                       onClick={() => {
                         setIssueType('fake-isi');
-                        alert('Grievance ticket created. Please fill out details below to report this product.');
+                        alert('You can now report this product using the form below.');
                       }}
-                      className="mt-3 px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-xl shadow-xs cursor-pointer"
+                      className="mt-3 px-3.5 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-xl shadow-xs cursor-pointer"
                     >
-                      Report This Counterfeit Product to Enforcement Cell
+                      Report This Fake Product
                     </button>
                   </div>
                 </div>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                      <span className="text-sm font-black text-emerald-900">AUTHENTIC & OPERATIVE BIS LICENCE</span>
+                      <span className="text-sm font-black text-emerald-900">GENUINE BIS CERTIFIED PRODUCT</span>
                     </div>
                     <span className="text-xs font-mono font-bold bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-md">
                       {searchResult.cmlNumber}
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs bg-white/80 p-4 rounded-xl border border-emerald-200/60">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs bg-white p-4 rounded-xl border border-emerald-200">
                     <div>
                       <span className="text-[10px] font-bold text-slate-400 uppercase">Manufacturer</span>
                       <p className="font-bold text-slate-800">{searchResult.licenseeName}</p>
@@ -145,15 +141,15 @@ export default function ConsumerDashboardPage() {
                       <p className="font-bold text-slate-800">{searchResult.brandName}</p>
                     </div>
                     <div>
-                      <span className="text-[10px] font-bold text-slate-400 uppercase">Applicable Standard</span>
+                      <span className="text-[10px] font-bold text-slate-400 uppercase">Standard</span>
                       <p className="font-bold text-slate-800">{searchResult.isCode}</p>
                     </div>
                     <div>
-                      <span className="text-[10px] font-bold text-slate-400 uppercase">Valid Upto</span>
+                      <span className="text-[10px] font-bold text-slate-400 uppercase">Valid Until</span>
                       <p className="font-bold text-emerald-700">{searchResult.validUpto}</p>
                     </div>
                     <div className="sm:col-span-2">
-                      <span className="text-[10px] font-bold text-slate-400 uppercase">Factory Address</span>
+                      <span className="text-[10px] font-bold text-slate-400 uppercase">Factory Location</span>
                       <p className="font-bold text-slate-800 truncate">{searchResult.factoryAddress}</p>
                     </div>
                   </div>
@@ -163,27 +159,27 @@ export default function ConsumerDashboardPage() {
           )}
         </div>
 
-        {/* 2. CITIZEN GRIEVANCE FILING & QCO PRODUCTS */}
+        {/* 2. REPORT FAKES & MANDATORY GOODS */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           
-          {/* File a Grievance */}
+          {/* File a Report */}
           <div className="p-6 bg-white rounded-3xl border border-slate-200 shadow-2xs space-y-4">
             <div className="flex items-center gap-2 text-slate-900 font-black text-base">
-              <AlertTriangle className="w-5 h-5 text-amber-600" />
-              <span>Report Substandard Goods or Fake ISI Marks</span>
+              <AlertTriangle className="w-5 h-5 text-teal-600" />
+              <span>Report a Fake ISI Mark or Substandard Product</span>
             </div>
             <p className="text-xs text-slate-500">
-              Your confidential complaint triggers official BIS surveillance inspections under Section 29 of the BIS Act 2016.
+              If a shop is selling products with a fake ISI mark or dangerous quality, report it here:
             </p>
 
             {complaintSubmitted ? (
               <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 text-center space-y-2">
                 <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto" />
                 <div className="text-xs font-bold text-emerald-900">
-                  Complaint Filed: Ticket #BIS-GRV-2026-9481
+                  Report Received! Reference: #GRV-2026-9481
                 </div>
                 <p className="text-[11px] text-emerald-700">
-                  Assigned to Northern Regional Office enforcement squad. You will receive SMS alerts as raid updates occur.
+                  Assigned to the local BIS quality inspection team. Thank you for protecting fellow consumers!
                 </p>
                 <button
                   onClick={() => setComplaintSubmitted(false)}
@@ -195,35 +191,35 @@ export default function ConsumerDashboardPage() {
             ) : (
               <div className="space-y-3 text-xs">
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Issue Category</label>
+                  <label className="block font-bold text-slate-700 mb-1">What is the problem?</label>
                   <select 
                     value={issueType} 
                     onChange={(e) => setIssueType(e.target.value)}
                     className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-800"
                   >
-                    <option value="fake-isi">Counterfeit ISI Mark (No genuine CM/L number)</option>
-                    <option value="substandard">Substandard / Dangerous Quality Product</option>
-                    <option value="hallmark">Fake Gold Hallmarking (Hallmark HUID mismatch)</option>
-                    <option value="expiry">Expired License Product Sold in Market</option>
+                    <option value="fake-isi">Fake ISI Mark on the product</option>
+                    <option value="substandard">Poor or dangerous quality</option>
+                    <option value="hallmark">Fake Gold Hallmark</option>
+                    <option value="expiry">Selling expired or cancelled license stock</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Brand Name & Product Details</label>
+                  <label className="block font-bold text-slate-700 mb-1">Brand Name & Product</label>
                   <input
                     type="text"
                     value={brandInput}
                     onChange={(e) => setBrandInput(e.target.value)}
-                    placeholder="e.g. Royal Star Pressure Cooker (5 Litres)"
+                    placeholder="e.g. Royal Star Pressure Cooker 5L"
                     className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-800"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-bold text-slate-700 mb-1">Purchase Location / Store Address</label>
+                  <label className="block font-bold text-slate-700 mb-1">Shop Name & City</label>
                   <input
                     type="text"
-                    placeholder="Shop #4, Main Market, Laxmi Nagar, Delhi - 110092"
+                    placeholder="e.g. Modern Home Store, Laxmi Nagar, Delhi"
                     className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-800"
                   />
                 </div>
@@ -231,49 +227,46 @@ export default function ConsumerDashboardPage() {
                 <button
                   onClick={() => {
                     if (!brandInput) {
-                      alert('Please provide brand name or product details.');
+                      alert('Please enter the product or brand name.');
                       return;
                     }
                     setComplaintSubmitted(true);
                   }}
-                  className="w-full py-2.5 bg-slate-900 hover:bg-black text-white text-xs font-bold rounded-xl transition shadow-sm cursor-pointer"
+                  className="w-full py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold rounded-xl transition shadow-xs cursor-pointer"
                 >
-                  Submit Official Complaint to BIS
+                  Submit Report to Quality Team
                 </button>
               </div>
             )}
           </div>
 
-          {/* Mandatory QCO Consumer Directory */}
+          {/* Products that Must Have ISI Mark */}
           <div className="p-6 bg-white rounded-3xl border border-slate-200 shadow-2xs space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-slate-900 font-black text-base">
-                <Bell className="w-5 h-5 text-red-600" />
-                <span>Must-Have ISI Mark Checklist</span>
+                <Bell className="w-5 h-5 text-teal-600" />
+                <span>Products That Must Have an ISI Mark by Law</span>
               </div>
-              <span className="text-[10px] font-bold text-red-700 bg-red-50 px-2 py-0.5 rounded border border-red-200">
-                Compulsory by Law
-              </span>
             </div>
             <p className="text-xs text-slate-500">
-              Never purchase these safety-critical products without verifying an authentic ISI mark:
+              Never buy these safety-critical items without checking for a genuine ISI mark:
             </p>
 
-            <div className="space-y-2.5 text-xs">
+            <div className="space-y-2 text-xs">
               {[
-                { name: 'Packaged Drinking Water & Mineral Water', standard: 'IS 14543 / IS 13428', note: 'Strict microbial safety standards' },
-                { name: 'Domestic Pressure Cookers', standard: 'IS 2347', note: 'Safety valve burst pressure compliance' },
-                { name: 'Two-Wheeler Helmets (Motorcycle)', standard: 'IS 4151', note: 'Mandatory impact absorption testing' },
-                { name: 'Children Toys & Electric Play Items', standard: 'IS 9873 / IS 15644', note: 'Zero toxic phthalates & lead-free paints' },
-                { name: 'Domestic Gas Cylinders & LPG Stoves', standard: 'IS 3196 / IS 4246', note: 'High pressure resistance and flame stability' },
+                { name: 'Packaged Drinking Water & Mineral Water', note: 'Safe and clean for drinking' },
+                { name: 'Kitchen Pressure Cookers', note: 'Burst-proof safety valves' },
+                { name: 'Two-Wheeler Helmets (Bikes & Scooters)', note: 'Life-saving crash impact protection' },
+                { name: 'Children Toys & Games', note: 'Safe materials and non-toxic paints' },
+                { name: 'LPG Gas Stoves & Gas Cylinders', note: 'Flame safety and high gas pressure checks' },
               ].map((item, idx) => (
                 <div key={idx} className="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between">
                   <div>
                     <div className="font-bold text-slate-800">{item.name}</div>
                     <div className="text-[11px] text-slate-500">{item.note}</div>
                   </div>
-                  <span className="font-mono text-[10px] font-bold bg-white text-slate-700 px-2 py-1 rounded border border-slate-200">
-                    {item.standard}
+                  <span className="text-[10px] font-bold bg-white text-teal-700 px-2.5 py-1 rounded border border-slate-200">
+                    Compulsory
                   </span>
                 </div>
               ))}

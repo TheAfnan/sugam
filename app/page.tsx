@@ -229,7 +229,7 @@ export default function SugamApp() {
                 SUGAM-AI
               </div>
               <p className="text-[11px] text-slate-400 font-medium leading-tight">
-                BIS Compliance Intelligence Assistant
+                National Standards Help Portal
               </p>
             </div>
           </div>
@@ -237,16 +237,16 @@ export default function SugamApp() {
           {/* Navigation Items */}
           <nav className="p-3 space-y-1 text-sm font-medium">
             {[
-              { id: 'dashboard', label: 'Dashboard', icon: Home },
-              { id: 'assistant', label: 'AI Assistant', icon: MessageSquare, badge: 'Bhashini' },
-              { id: 'compliance', label: 'Product Compliance', icon: Layers },
-              { id: 'standards', label: 'Standards Search', icon: FileText },
-              { id: 'verification', label: 'BIS Mark Verification', icon: QrCode },
-              { id: 'navigator', label: 'Compliance Navigator', icon: Navigation },
-              { id: 'updates', label: 'Regulatory Updates', icon: Bell, alert: true },
-              { id: 'labs', label: 'Laboratory Finder', icon: FlaskConical },
-              { id: 'documents', label: 'Documents & Templates', icon: FileCheck },
-              { id: 'complaints', label: 'Complaints & Support', icon: Shield },
+              { id: 'dashboard', label: 'Home Dashboard', icon: Home },
+              { id: 'assistant', label: 'AI Assistant', icon: MessageSquare, badge: 'Hindi / Regional' },
+              { id: 'compliance', label: 'Product Rules', icon: Layers },
+              { id: 'standards', label: 'Search Standards', icon: FileText },
+              { id: 'verification', label: 'Check ISI Mark', icon: QrCode },
+              { id: 'navigator', label: 'Step-by-Step Guide', icon: Navigation },
+              { id: 'updates', label: 'News & Alerts', icon: Bell, alert: true },
+              { id: 'labs', label: 'Testing Labs', icon: FlaskConical },
+              { id: 'documents', label: 'Sample Formats', icon: FileCheck },
+              { id: 'complaints', label: 'Report a Fake & Help', icon: Shield },
             ].map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;

@@ -4,7 +4,7 @@ import React, { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Building2, Rocket, Shield, ShieldAlert, Sparkles, ArrowRight } from 'lucide-react';
+import { Building2, Rocket, Shield, ShieldAlert } from 'lucide-react';
 import { DEMO_PERSONAS, UserRole } from '@/lib/useAuth';
 
 function LoginForm() {
@@ -56,29 +56,29 @@ function LoginForm() {
 
   return (
     <motion.div
-      className="max-w-md w-full bg-white rounded-3xl shadow-xl p-8 border border-gray-100 space-y-5"
+      className="max-w-md w-full bg-white rounded-3xl shadow-sm p-8 border border-slate-200 space-y-5"
       initial={{ opacity: 0, x: -30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div className="text-center">
-        <div className="w-14 h-14 bg-gradient-to-br from-teal-600 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-md shadow-teal-700/20">
+        <div className="w-13 h-13 bg-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-md shadow-teal-700/20">
           <span className="text-white font-black text-xl">SU</span>
         </div>
-        <h1 className="text-2xl font-black text-gray-900 tracking-tight">Sign In to SUGAM</h1>
-        <p className="text-xs text-gray-500 mt-1">
-          Role-protected portals for MSMEs, Applicants, Consumers & Officers
+        <h1 className="text-2xl font-black text-slate-900 tracking-tight">Sign In to SUGAM</h1>
+        <p className="text-xs text-slate-500 mt-1">
+          Simple and secure access to your certification portal
         </p>
       </div>
 
-      {/* 1-Click SIH Persona Quick Logins */}
+      {/* 1-Click Persona Quick Logins */}
       <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-2">
         <div className="flex items-center justify-between">
           <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">
-            SIH Evaluation: 1-Click Login
+            Select Your Role to Try Instantly:
           </span>
-          <span className="text-[10px] font-bold text-teal-700 bg-teal-100/60 px-1.5 py-0.5 rounded">
-            Instant Test
+          <span className="text-[10px] font-bold text-teal-700 bg-teal-50 px-1.5 py-0.5 rounded border border-teal-200">
+            1-Click Demo
           </span>
         </div>
 
@@ -86,73 +86,73 @@ function LoginForm() {
           <button
             type="button"
             onClick={() => handleQuickLogin('msme')}
-            className="p-2 text-left bg-white hover:bg-amber-50/80 border border-slate-200 hover:border-amber-300 rounded-xl transition flex items-center gap-2 group cursor-pointer shadow-2xs"
+            className="p-2.5 text-left bg-white hover:bg-slate-100 border border-slate-200 rounded-xl transition flex items-center gap-2 group cursor-pointer shadow-2xs"
           >
-            <div className="w-7 h-7 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 font-bold">
+            <div className="w-7 h-7 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center shrink-0 font-bold">
               <Building2 className="w-3.5 h-3.5" />
             </div>
             <div className="min-w-0">
-              <div className="text-[11px] font-bold text-slate-800 group-hover:text-amber-900 truncate">
-                MSME Mfr
+              <div className="text-[11px] font-bold text-slate-900 truncate">
+                Factory Owner
               </div>
-              <div className="text-[9px] text-slate-400 truncate">License & Subsidy</div>
+              <div className="text-[9px] text-slate-400 truncate">MSME Discounts</div>
             </div>
           </button>
 
           <button
             type="button"
             onClick={() => handleQuickLogin('applicant')}
-            className="p-2 text-left bg-white hover:bg-blue-50/80 border border-slate-200 hover:border-blue-300 rounded-xl transition flex items-center gap-2 group cursor-pointer shadow-2xs"
+            className="p-2.5 text-left bg-white hover:bg-slate-100 border border-slate-200 rounded-xl transition flex items-center gap-2 group cursor-pointer shadow-2xs"
           >
-            <div className="w-7 h-7 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center shrink-0 font-bold">
+            <div className="w-7 h-7 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center shrink-0 font-bold">
               <Rocket className="w-3.5 h-3.5" />
             </div>
             <div className="min-w-0">
-              <div className="text-[11px] font-bold text-slate-800 group-hover:text-blue-900 truncate">
-                Applicant
+              <div className="text-[11px] font-bold text-slate-900 truncate">
+                New Business
               </div>
-              <div className="text-[9px] text-slate-400 truncate">0-to-1 Wizard</div>
+              <div className="text-[9px] text-slate-400 truncate">First-Time Guide</div>
             </div>
           </button>
 
           <button
             type="button"
             onClick={() => handleQuickLogin('consumer')}
-            className="p-2 text-left bg-white hover:bg-emerald-50/80 border border-slate-200 hover:border-emerald-300 rounded-xl transition flex items-center gap-2 group cursor-pointer shadow-2xs"
+            className="p-2.5 text-left bg-white hover:bg-slate-100 border border-slate-200 rounded-xl transition flex items-center gap-2 group cursor-pointer shadow-2xs"
           >
-            <div className="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0 font-bold">
+            <div className="w-7 h-7 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center shrink-0 font-bold">
               <Shield className="w-3.5 h-3.5" />
             </div>
             <div className="min-w-0">
-              <div className="text-[11px] font-bold text-slate-800 group-hover:text-emerald-900 truncate">
+              <div className="text-[11px] font-bold text-slate-900 truncate">
                 Consumer
               </div>
-              <div className="text-[9px] text-slate-400 truncate">Mark Verify & Care</div>
+              <div className="text-[9px] text-slate-400 truncate">Check ISI & Fakes</div>
             </div>
           </button>
 
           <button
             type="button"
             onClick={() => handleQuickLogin('officer')}
-            className="p-2 text-left bg-white hover:bg-purple-50/80 border border-slate-200 hover:border-purple-300 rounded-xl transition flex items-center gap-2 group cursor-pointer shadow-2xs"
+            className="p-2.5 text-left bg-white hover:bg-slate-100 border border-slate-200 rounded-xl transition flex items-center gap-2 group cursor-pointer shadow-2xs"
           >
-            <div className="w-7 h-7 rounded-lg bg-purple-100 text-purple-800 flex items-center justify-center shrink-0 font-bold">
+            <div className="w-7 h-7 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center shrink-0 font-bold">
               <ShieldAlert className="w-3.5 h-3.5" />
             </div>
             <div className="min-w-0">
-              <div className="text-[11px] font-bold text-slate-800 group-hover:text-purple-900 truncate">
+              <div className="text-[11px] font-bold text-slate-900 truncate">
                 BIS Officer
               </div>
-              <div className="text-[9px] text-slate-400 truncate">Scrutiny & Raids</div>
+              <div className="text-[9px] text-slate-400 truncate">Review & Approve</div>
             </div>
           </button>
         </div>
       </div>
 
       <div className="relative flex items-center justify-center">
-        <div className="border-t border-gray-200 w-full"></div>
-        <span className="bg-white px-2 text-[10px] uppercase font-bold text-gray-400 absolute">
-          Or Enter Credentials
+        <div className="border-t border-slate-200 w-full"></div>
+        <span className="bg-white px-2 text-[10px] uppercase font-bold text-slate-400 absolute">
+          Or Enter Details
         </span>
       </div>
 
@@ -164,43 +164,41 @@ function LoginForm() {
 
       <form onSubmit={handleSubmit} className="space-y-3.5">
         <div>
-          <label className="block text-xs font-bold text-gray-700 mb-1">Email Address</label>
+          <label className="block text-xs font-bold text-slate-700 mb-1">Email Address</label>
           <input
             name="email"
             type="email"
             value={emailInput}
             onChange={(e) => setEmailInput(e.target.value)}
             required
-            className="w-full px-3.5 py-2.5 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            className="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
             placeholder="msme@sugam.ai"
           />
         </div>
 
         <div>
-          <label className="block text-xs font-bold text-gray-700 mb-1">Password</label>
+          <label className="block text-xs font-bold text-slate-700 mb-1">Password</label>
           <input
             name="password"
             type="password"
             value={passwordInput}
             onChange={(e) => setPasswordInput(e.target.value)}
             required
-            className="w-full px-3.5 py-2.5 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
+            className="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-teal-500 focus:outline-none"
             placeholder="••••••••"
           />
         </div>
 
-        <motion.button
-          whileHover={{ scale: 1.01 }}
-          whileTap={{ scale: 0.99 }}
+        <button
           type="submit"
           disabled={isLoading}
-          className="w-full bg-gradient-to-r from-teal-600 to-emerald-600 text-white font-bold py-2.5 px-4 rounded-xl hover:from-teal-700 hover:to-emerald-700 transition-all text-xs shadow-md disabled:opacity-50 mt-1 cursor-pointer"
+          className="w-full bg-teal-600 text-white font-bold py-2.5 px-4 rounded-xl hover:bg-teal-700 transition-all text-xs shadow-xs disabled:opacity-50 mt-1 cursor-pointer"
         >
-          {isLoading ? 'Authenticating...' : 'Sign In with Credentials'}
-        </motion.button>
+          {isLoading ? 'Checking...' : 'Sign In with Email'}
+        </button>
       </form>
 
-      <p className="text-center text-xs text-gray-600">
+      <p className="text-center text-xs text-slate-600">
         Don't have an account?{' '}
         <Link
           href={searchParams.get('next') ? `/signup?next=${encodeURIComponent(searchParams.get('next')!)}` : '/signup'}
@@ -211,7 +209,7 @@ function LoginForm() {
       </p>
 
       <div className="text-center">
-        <Link href="/" className="text-gray-400 hover:text-gray-600 text-xs font-medium">
+        <Link href="/" className="text-slate-400 hover:text-slate-600 text-xs font-medium">
           ← Back to homepage
         </Link>
       </div>
@@ -221,29 +219,29 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen flex">
-      <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-teal-50 to-emerald-50 p-6 md:p-10">
-        <Suspense fallback={<div className="text-sm text-gray-500">Loading sign in...</div>}>
+    <div className="min-h-screen flex bg-slate-50">
+      <div className="flex-1 flex items-center justify-center p-6 md:p-10">
+        <Suspense fallback={<div className="text-sm text-slate-500">Loading sign in...</div>}>
           <LoginForm />
         </Suspense>
       </div>
 
-      <div className="hidden lg:flex flex-1 items-center justify-center bg-gradient-to-br from-teal-700 to-emerald-900 text-white p-12">
+      <div className="hidden lg:flex flex-1 items-center justify-center bg-slate-900 text-white p-12">
         <div className="max-w-lg text-left space-y-6">
-          <div className="inline-block px-3 py-1 rounded-full bg-white/10 text-teal-200 text-xs font-semibold backdrop-blur-md">
-            National Standards AI Assistant
+          <div className="inline-block px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-xs font-semibold">
+            SUGAM Portal Access
           </div>
           <h2 className="text-4xl font-extrabold leading-tight">
-            Role-Based Access for India's Quality Ecosystem
+            Clear, Simple Guidance for Indian Quality Standards
           </h2>
-          <p className="text-base text-teal-100/90 leading-relaxed">
-            Strict separation between regulated MSMEs, First-Time Startups, Citizens, and BIS Technical Officers.
+          <p className="text-base text-slate-300 leading-relaxed">
+            Personalized tools built specifically for factory owners, new startups, citizens, and quality officers.
           </p>
-          <div className="space-y-3 text-xs text-teal-100 pt-4">
-            <p className="flex items-center gap-2">✓ <strong>MSME Workspace</strong>: CM/L license tracking & subsidy calculator</p>
-            <p className="flex items-center gap-2">✓ <strong>Applicant Launchpad</strong>: 0-to-1 Step-by-step readiness score</p>
-            <p className="flex items-center gap-2">✓ <strong>Consumer Safety</strong>: BIS Care citizen reporting & mark verifier</p>
-            <p className="flex items-center gap-2">✓ <strong>BIS Officer Scrutiny</strong>: Dossier approval queue & raid logs</p>
+          <div className="space-y-3 text-xs text-slate-300 pt-2">
+            <p className="flex items-center gap-2">✓ <strong>Factory Owners</strong>: License tracking & 80% fee discount</p>
+            <p className="flex items-center gap-2">✓ <strong>New Businesses</strong>: 5 easy steps to get your first ISI mark</p>
+            <p className="flex items-center gap-2">✓ <strong>Consumers</strong>: Check genuine ISI marks & report fake goods</p>
+            <p className="flex items-center gap-2">✓ <strong>Quality Officers</strong>: Application review & factory visit calendar</p>
           </div>
         </div>
       </div>
