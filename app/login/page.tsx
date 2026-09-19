@@ -156,6 +156,18 @@ function LoginForm() {
         </span>
       </div>
 
+      {searchParams.get('verified') === 'true' && (
+        <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs font-semibold">
+          ✓ Email verified successfully! You can now sign in with your email and password.
+        </div>
+      )}
+
+      {searchParams.get('error') && (
+        <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-medium">
+          {searchParams.get('error')}
+        </div>
+      )}
+
       {errorMsg && (
         <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-medium">
           {errorMsg}

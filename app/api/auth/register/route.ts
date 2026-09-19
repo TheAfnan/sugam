@@ -14,36 +14,47 @@ export async function POST(request: NextRequest) {
     }
 
     const normalizedEmail = email.toLowerCase().trim();
+    const origin = request.nextUrl.origin || 'http://localhost:3000';
+    const emailRedirectTo = `${origin}/auth/callback`;
 
-    // 1. Try Supabase signUp
-    let supabaseUserId: string | null = null;
-    try {
-      const supabase = await createClient();
-      const { data, error } = await supabase.auth.signUp({
-        email: normalizedEmail,
-        password,
-        options: {
-          data: {
-            full_name: name,
-            name,
-            companyName: companyName || 'My Enterprise',
-            companyType: companyType || 'Enterprise',
-            role,
-          },
+    // 1. Execute Supabase signUp
+    const supabase = await createClient();
+    const { data, error } = await supabase.auth.signUp({
+      email: normalizedEmail,
+      password,
+      options: {
+        emailRedirectTo,
+        data: {
+          full_name: name,
+          name,
+          companyName: companyName || 'My Enterprise',
+          companyType: companyType || 'Enterprise',
+          role,
         },
-      });
+      },
+    });
 
-      if (error) {
-        console.warn('Supabase signUp error (falling back gracefully):', error.message);
-      } else if (data?.user) {
-        supabaseUserId = data.user.id;
-      }
-    } catch (sbErr) {
-      console.warn('Supabase signUp exception:', sbErr);
+    if (error) {
+      return NextResponse.json(
+        { success: false, error: error.message },
+        { status: 400 }
+      );
+    }
+
+    // Check if email confirmation is required (session is null when 'Confirm email' is active in Supabase)
+    const requiresEmailConfirmation = !data.session;
+
+    if (requiresEmailConfirmation) {
+      return NextResponse.json({
+        success: true,
+        requiresEmailConfirmation: true,
+        email: normalizedEmail,
+        message: 'Verification email sent! Please check your inbox (or spam) and click the link or enter the 6-digit code.',
+      });
     }
 
     const user = {
-      id: supabaseUserId || 'user-' + Date.now(),
+      id: data.user?.id || 'user-' + Date.now(),
       email: normalizedEmail,
       name,
       role: role || 'msme',
@@ -71,8 +82,9 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
+      requiresEmailConfirmation: false,
       user,
-      accessToken: 'mock-jwt-token-sugam-' + Date.now(),
+      accessToken: data.session?.access_token || 'mock-jwt-token-sugam-' + Date.now(),
     });
   } catch (error: any) {
     return NextResponse.json(
