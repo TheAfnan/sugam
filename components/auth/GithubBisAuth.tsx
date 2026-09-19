@@ -2,16 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Shield, CheckCircle2, ArrowRight, RefreshCw, KeyRound,
   MessageSquare, Mail, Building2, Rocket, ShieldAlert,
-  Sparkles, Terminal, Lock, UserCheck, X, ChevronRight, Eye, EyeOff
+  X, Eye, EyeOff, Check
 } from 'lucide-react';
 import { DEMO_PERSONAS, UserRole } from '@/lib/useAuth';
 
-interface GithubBisAuthProps {
+interface CleanBisAuthProps {
   initialMode?: 'signin' | 'signup';
   isModal?: boolean;
   onClose?: () => void;
@@ -21,7 +20,7 @@ export default function GithubBisAuth({
   initialMode = 'signin',
   isModal = false,
   onClose,
-}: GithubBisAuthProps) {
+}: CleanBisAuthProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -53,33 +52,15 @@ export default function GithubBisAuth({
   const [otpCode, setOtpCode] = useState('');
   const [isSubmittingOtp, setIsSubmittingOtp] = useState(false);
 
-  // 3D Tilt Effect State
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
-
   // WhatsApp Simulated Notification
   const [showWhatsAppNotification, setShowWhatsAppNotification] = useState(false);
   const [activeSimulatedOtp, setActiveSimulatedOtp] = useState('');
 
   useEffect(() => {
     if (searchParams.get('verified') === 'true') {
-      setSuccessBanner('✓ Official Email Verified! Sign in with your credentials.');
+      setSuccessBanner('Email verified successfully! You can now sign in.');
     }
   }, [searchParams]);
-
-  // Handle 3D card tilt
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    setRotateX(-y * 0.05);
-    setRotateY(x * 0.05);
-  };
-
-  const handleMouseLeave = () => {
-    setRotateX(0);
-    setRotateY(0);
-  };
 
   // Quick 1-Click login for judges
   const handlePersonaLogin = (role: UserRole) => {
@@ -105,7 +86,7 @@ export default function GithubBisAuth({
       const data = await res.json();
 
       if (!res.ok || !data.success) {
-        setErrorMsg(data.error || 'Invalid credentials. Please verify your details.');
+        setErrorMsg(data.error || 'Invalid email or password. Please try again.');
         return;
       }
 
@@ -191,7 +172,7 @@ export default function GithubBisAuth({
   const handleVerifyOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     if (otpCode.trim().length < 6) {
-      setErrorMsg('Enter valid 6-digit code');
+      setErrorMsg('Please enter the 6-digit code');
       return;
     }
 
@@ -230,7 +211,8 @@ export default function GithubBisAuth({
   };
 
   return (
-    <div className={`relative ${isModal ? 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md' : 'w-full min-h-screen flex items-center justify-center p-4 md:p-8 bg-[#0a0d12]'}`}>
+    <div className={`relative ${isModal ? 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm' : 'w-full min-h-screen flex items-center justify-center p-4 md:p-8 bg-slate-100'}`}>
+      
       {/* WhatsApp Simulated Top Toast Notification */}
       <AnimatePresence>
         {showWhatsAppNotification && activeSimulatedOtp && (
@@ -238,21 +220,23 @@ export default function GithubBisAuth({
             initial={{ y: -80, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -80, opacity: 0 }}
-            className="fixed top-6 left-1/2 -translate-x-1/2 z-[60] bg-[#161b22] text-white rounded-2xl shadow-2xl p-4 border border-emerald-500/50 max-w-sm w-[92%] flex items-start gap-3"
+            className="fixed top-6 left-1/2 -translate-x-1/2 z-[60] bg-white text-slate-800 rounded-2xl shadow-xl p-4 border border-emerald-200 max-w-sm w-[92%] flex items-start gap-3.5"
           >
-            <div className="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center shrink-0 shadow-lg shadow-emerald-500/30">
-              <MessageSquare className="w-5 h-5 text-white" />
+            <div className="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-md shadow-emerald-500/20">
+              <MessageSquare className="w-5 h-5" />
             </div>
             <div className="flex-1 text-xs">
               <div className="flex items-center justify-between mb-1">
-                <span className="font-mono font-bold text-emerald-400">WhatsApp • BIS SUGAM</span>
-                <span className="text-[10px] text-slate-400">now</span>
+                <span className="font-bold text-emerald-700 flex items-center gap-1">
+                  WhatsApp • SUGAM Portal
+                </span>
+                <span className="text-[10px] text-slate-400">Just now</span>
               </div>
-              <p className="text-slate-300 text-[11px]">
-                Your official 6-digit verification code is:
+              <p className="text-slate-600 text-[11px]">
+                Your 6-digit verification code is:
               </p>
               <div className="mt-1.5 flex items-center gap-2">
-                <span className="bg-emerald-950/90 text-emerald-300 font-mono font-black text-sm px-2.5 py-0.5 rounded border border-emerald-500/40 tracking-widest">
+                <span className="bg-emerald-50 text-emerald-800 font-bold text-base px-2.5 py-0.5 rounded-lg border border-emerald-200 tracking-widest font-mono">
                   {activeSimulatedOtp}
                 </span>
                 <button
@@ -261,7 +245,7 @@ export default function GithubBisAuth({
                     setOtpCode(activeSimulatedOtp);
                     setShowWhatsAppNotification(false);
                   }}
-                  className="text-[10px] font-bold text-emerald-400 hover:text-emerald-300 underline cursor-pointer"
+                  className="text-[11px] font-bold text-emerald-600 hover:text-emerald-700 underline cursor-pointer"
                 >
                   Auto-fill code ➔
                 </button>
@@ -271,214 +255,188 @@ export default function GithubBisAuth({
         )}
       </AnimatePresence>
 
-      {/* Main Glassmorphic GitHub-style Container */}
-      <motion.div
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        animate={{ rotateX, rotateY }}
-        transition={{ type: 'spring', damping: 20, stiffness: 200 }}
-        style={{ perspective: 1000 }}
-        className="w-full max-w-4xl bg-[#0d1117] border border-slate-800/80 rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 relative text-slate-200"
-      >
-        {/* Close Button if opened as Modal */}
+      {/* Main Clean Card */}
+      <div className="w-full max-w-4xl bg-white border border-slate-200 rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 relative text-slate-800">
+        
+        {/* Close Button if Modal */}
         {isModal && (
           <button
+            type="button"
             onClick={onClose}
-            className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition"
+            className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
         )}
 
-        {/* LEFT COLUMN: 3D Holographic BIS Seal & National Standard Crest (5 cols) */}
-        <div className="lg:col-span-5 bg-gradient-to-b from-[#161b22] via-[#0d1117] to-[#0b0e14] p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-800 relative overflow-hidden">
-          {/* Ambient Glow Orbs */}
-          <div className="absolute -top-16 -left-16 w-48 h-48 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-          {/* Top Branding & Terminal Tag */}
+        {/* LEFT PANEL: Clean Navy Official BIS Branding (5 cols) */}
+        <div className="lg:col-span-5 bg-[#0b1739] text-white p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-800 relative">
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <span className="font-mono text-[10px] tracking-wider text-emerald-400 bg-emerald-950/60 border border-emerald-800/50 px-2 py-0.5 rounded-md flex items-center gap-1.5">
-                <Terminal className="w-3 h-3" /> GOVT.OF.INDIA // BIS-SECURE-AUTH
-              </span>
+            {/* National Crest / Header */}
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-blue-500/30">
+                <Shield className="w-5 h-5" />
+              </div>
+              <div>
+                <h2 className="text-xl font-black tracking-tight text-white">SUGAM</h2>
+                <p className="text-[11px] text-blue-200 font-medium">मानक सेतु • BIS Portal</p>
+              </div>
             </div>
-            <h2 className="text-2xl font-black text-white tracking-tight flex items-center gap-2">
-              SUGAM <span className="text-teal-400 font-normal text-sm font-mono">// सेतु</span>
-            </h2>
-            <p className="text-xs text-slate-400 mt-1">
-              National Bureau of Indian Standards Unified Quality & Certification Access Gateway
+
+            <p className="text-xs text-slate-300 leading-relaxed">
+              Official Indian Quality Standards and Certification Gateway by the Bureau of Indian Standards.
             </p>
-          </div>
 
-          {/* Center: 3D Interactive BIS Quality Seal */}
-          <div className="my-8 flex flex-col items-center justify-center relative group cursor-pointer">
-            {/* Rotating Orbit Ring */}
-            <div className="w-44 h-44 rounded-full border border-teal-500/20 border-dashed animate-spin-slow absolute inset-0 m-auto pointer-events-none"></div>
-            
-            {/* 3D Gold / Teal Shield Container */}
-            <motion.div
-              whileHover={{ scale: 1.05, rotateZ: 2 }}
-              className="w-36 h-36 rounded-3xl bg-gradient-to-br from-slate-800 via-teal-950 to-slate-900 border-2 border-teal-500/40 shadow-xl shadow-teal-950/50 flex flex-col items-center justify-center relative p-3 text-center"
-            >
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-teal-500 to-emerald-400 text-slate-950 flex items-center justify-center shadow-lg shadow-teal-500/30 mb-2 font-black text-xl">
-                IS
+            {/* Clean 3D BIS Quality Badge */}
+            <div className="my-6 p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 text-slate-950 flex flex-col items-center justify-center font-black shadow-lg shadow-amber-500/20 shrink-0">
+                <span className="text-xs tracking-tight">ISI</span>
+                <span className="text-[8px] font-semibold uppercase">Mark</span>
               </div>
-              <span className="text-[10px] font-black uppercase tracking-wider text-white">
-                मानकः पथप्रदर्शकः
-              </span>
-              <span className="text-[8px] font-mono text-teal-400/90 tracking-tighter mt-0.5">
-                STANDARDS GUIDEPOST
-              </span>
-              <div className="mt-1 flex items-center gap-1 text-[8px] font-mono text-emerald-400">
-                <Shield className="w-2.5 h-2.5" /> ISI VERIFIED
+              <div>
+                <div className="text-xs font-bold text-white">मानकः पथप्रदर्शकः</div>
+                <div className="text-[10px] text-slate-300">Standards Guide the Nation</div>
+                <div className="text-[10px] text-emerald-400 font-medium mt-0.5 flex items-center gap-1">
+                  <Check className="w-3 h-3" /> Verified Quality Assurance
+                </div>
               </div>
-            </motion.div>
-          </div>
-
-          {/* Bottom Hackathon 1-Click Demo Personas */}
-          <div className="space-y-2 pt-2 border-t border-slate-800/80">
-            <div className="flex items-center justify-between text-[10px] text-slate-400 font-mono">
-              <span>EVALUATOR QUICK ACCESS:</span>
-              <span className="text-teal-400 font-bold">1-CLICK</span>
             </div>
-            <div className="grid grid-cols-2 gap-1.5">
+          </div>
+
+          {/* Quick Role Tester for Judges */}
+          <div className="space-y-2 pt-4 border-t border-white/10">
+            <div className="flex items-center justify-between text-[11px] text-slate-300 font-bold">
+              <span>Try Instant Role Portals:</span>
+              <span className="text-amber-400 bg-amber-400/10 px-1.5 py-0.5 rounded text-[10px]">1-Click Demo</span>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
               <button
                 type="button"
                 onClick={() => handlePersonaLogin('msme')}
-                className="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-teal-500/50 text-left transition flex items-center gap-2 cursor-pointer group"
+                className="p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-left transition flex items-center gap-2 cursor-pointer group"
               >
-                <Building2 className="w-3.5 h-3.5 text-teal-400 group-hover:scale-110 transition" />
+                <Building2 className="w-4 h-4 text-blue-300 group-hover:scale-105 transition" />
                 <div className="min-w-0">
-                  <div className="text-[11px] font-bold text-white truncate">Factory Owner</div>
-                  <div className="text-[9px] text-slate-400 truncate">MSME 80% Off</div>
+                  <div className="text-xs font-bold text-white truncate">Factory Owner</div>
+                  <div className="text-[10px] text-slate-300 truncate">80% Discount</div>
                 </div>
               </button>
 
               <button
                 type="button"
                 onClick={() => handlePersonaLogin('applicant')}
-                className="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-teal-500/50 text-left transition flex items-center gap-2 cursor-pointer group"
+                className="p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-left transition flex items-center gap-2 cursor-pointer group"
               >
-                <Rocket className="w-3.5 h-3.5 text-emerald-400 group-hover:scale-110 transition" />
+                <Rocket className="w-4 h-4 text-emerald-300 group-hover:scale-105 transition" />
                 <div className="min-w-0">
-                  <div className="text-[11px] font-bold text-white truncate">New Startup</div>
-                  <div className="text-[9px] text-slate-400 truncate">First-Time ISI</div>
+                  <div className="text-xs font-bold text-white truncate">New Startup</div>
+                  <div className="text-[10px] text-slate-300 truncate">First-Time Guide</div>
                 </div>
               </button>
 
               <button
                 type="button"
                 onClick={() => handlePersonaLogin('consumer')}
-                className="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-teal-500/50 text-left transition flex items-center gap-2 cursor-pointer group"
+                className="p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-left transition flex items-center gap-2 cursor-pointer group"
               >
-                <Shield className="w-3.5 h-3.5 text-cyan-400 group-hover:scale-110 transition" />
+                <Shield className="w-4 h-4 text-cyan-300 group-hover:scale-105 transition" />
                 <div className="min-w-0">
-                  <div className="text-[11px] font-bold text-white truncate">Citizen</div>
-                  <div className="text-[9px] text-slate-400 truncate">Verify ISI Mark</div>
+                  <div className="text-xs font-bold text-white truncate">Consumer</div>
+                  <div className="text-[10px] text-slate-300 truncate">Check ISI Mark</div>
                 </div>
               </button>
 
               <button
                 type="button"
                 onClick={() => handlePersonaLogin('officer')}
-                className="p-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-teal-500/50 text-left transition flex items-center gap-2 cursor-pointer group"
+                className="p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-left transition flex items-center gap-2 cursor-pointer group"
               >
-                <ShieldAlert className="w-3.5 h-3.5 text-amber-400 group-hover:scale-110 transition" />
+                <ShieldAlert className="w-4 h-4 text-amber-300 group-hover:scale-105 transition" />
                 <div className="min-w-0">
-                  <div className="text-[11px] font-bold text-white truncate">BIS Officer</div>
-                  <div className="text-[9px] text-slate-400 truncate">Inspect & Audit</div>
+                  <div className="text-xs font-bold text-white truncate">BIS Officer</div>
+                  <div className="text-[10px] text-slate-300 truncate">Audit & Review</div>
                 </div>
               </button>
             </div>
           </div>
         </div>
 
-        {/* RIGHT COLUMN: GitHub-style Sleek Auth Terminal (7 cols) */}
-        <div className="lg:col-span-7 p-6 md:p-8 flex flex-col justify-center bg-[#0d1117]">
-          {/* GitHub Tab Switcher: Sign In vs Create Account */}
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-5">
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => {
-                  setMode('signin');
-                  setIsVerifying(false);
-                  setErrorMsg('');
-                }}
-                className={`text-xs font-mono font-bold pb-2 transition cursor-pointer relative ${
-                  mode === 'signin'
-                    ? 'text-white border-b-2 border-teal-500 -mb-[13px]'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                $ git auth --signin
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setMode('signup');
-                  setIsVerifying(false);
-                  setErrorMsg('');
-                }}
-                className={`text-xs font-mono font-bold pb-2 transition cursor-pointer relative ml-4 ${
-                  mode === 'signup'
-                    ? 'text-white border-b-2 border-emerald-500 -mb-[13px]'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                $ git auth --create-account
-              </button>
-            </div>
-
-            <span className="text-[10px] font-mono text-slate-500 hidden sm:inline">
-              SSH-256 SECURE
-            </span>
+        {/* RIGHT PANEL: Clean, Friendly Form (7 cols) */}
+        <div className="lg:col-span-7 p-6 md:p-8 flex flex-col justify-center bg-white">
+          
+          {/* Clean Tab Switcher: Sign In vs Create Account */}
+          <div className="flex items-center gap-6 border-b border-slate-200 pb-3 mb-5">
+            <button
+              type="button"
+              onClick={() => {
+                setMode('signin');
+                setIsVerifying(false);
+                setErrorMsg('');
+              }}
+              className={`text-sm font-bold pb-2 transition cursor-pointer relative ${
+                mode === 'signin'
+                  ? 'text-blue-600 border-b-2 border-blue-600 -mb-[13px]'
+                  : 'text-slate-400 hover:text-slate-700'
+              }`}
+            >
+              Sign In
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setMode('signup');
+                setIsVerifying(false);
+                setErrorMsg('');
+              }}
+              className={`text-sm font-bold pb-2 transition cursor-pointer relative ${
+                mode === 'signup'
+                  ? 'text-blue-600 border-b-2 border-blue-600 -mb-[13px]'
+                  : 'text-slate-400 hover:text-slate-700'
+              }`}
+            >
+              Create Account
+            </button>
           </div>
 
           {/* Success Banner */}
           {successBanner && (
-            <div className="mb-4 p-3 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs font-mono flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 shrink-0" />
+            <div className="mb-4 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-medium flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600" />
               <span>{successBanner}</span>
             </div>
           )}
 
           {/* Error Message */}
           {errorMsg && (
-            <div className="mb-4 p-3 rounded-xl bg-red-950/60 border border-red-500/40 text-red-300 text-xs font-mono">
-              [!] {errorMsg}
+            <div className="mb-4 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium">
+              {errorMsg}
             </div>
           )}
 
           {/* VIEW A: VERIFICATION STEP (If OTP / Email sent) */}
           {isVerifying ? (
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="space-y-4"
-            >
-              <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
-                <span className="font-mono text-[10px] text-teal-400 uppercase tracking-widest block mb-1">
-                  SECURITY HANDSHAKE PENDING
+            <div className="space-y-4">
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 block mb-1">
+                  Verification Required
                 </span>
-                <h3 className="text-base font-bold text-white">Enter 6-Digit Verification Token</h3>
-                <p className="text-xs text-slate-400 mt-1">
-                  Confirmation code dispatched to: <strong className="text-white">{registeredTarget}</strong>
+                <h3 className="text-base font-bold text-slate-900">Enter 6-Digit Code</h3>
+                <p className="text-xs text-slate-500 mt-1">
+                  Verification code has been sent to: <strong className="text-slate-800">{registeredTarget}</strong>
                 </p>
               </div>
 
               <form onSubmit={handleVerifyOtp} className="space-y-4">
                 <div>
-                  <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-1.5">
-                    <span>TOKEN INPUT:</span>
+                  <div className="flex items-center justify-between text-xs text-slate-600 mb-1.5 font-medium">
+                    <span>6-Digit Code:</span>
                     {activeSimulatedOtp && (
                       <button
                         type="button"
                         onClick={() => setOtpCode(activeSimulatedOtp)}
-                        className="text-emerald-400 font-bold hover:underline cursor-pointer"
+                        className="text-blue-600 font-bold hover:underline cursor-pointer"
                       >
-                        Auto-Paste: {activeSimulatedOtp}
+                        Auto-fill: {activeSimulatedOtp}
                       </button>
                     )}
                   </div>
@@ -488,7 +446,7 @@ export default function GithubBisAuth({
                     value={otpCode}
                     onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, ''))}
                     placeholder="••••••"
-                    className="w-full px-4 py-3 bg-[#161b22] border border-slate-700 rounded-xl text-center text-2xl font-mono font-bold tracking-widest text-emerald-400 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
+                    className="w-full px-4 py-3 bg-white border border-slate-300 rounded-xl text-center text-2xl font-bold tracking-widest text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     autoFocus
                   />
                 </div>
@@ -496,13 +454,13 @@ export default function GithubBisAuth({
                 <button
                   type="submit"
                   disabled={isSubmittingOtp}
-                  className="w-full py-3 px-4 bg-teal-600 hover:bg-teal-500 text-white font-mono font-bold text-xs rounded-xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
-                  {isSubmittingOtp ? 'VERIFYING TOKEN...' : 'CONFIRM IDENTITY & PROCEED ➔'}
+                  {isSubmittingOtp ? 'Verifying...' : 'Verify & Enter Dashboard ➔'}
                 </button>
               </form>
 
-              <div className="flex items-center justify-between text-xs font-mono text-slate-500 pt-3 border-t border-slate-800/80">
+              <div className="flex items-center justify-between text-xs text-slate-500 pt-3 border-t border-slate-100">
                 <button
                   type="button"
                   onClick={() => {
@@ -510,30 +468,25 @@ export default function GithubBisAuth({
                     setActiveSimulatedOtp(newOtp);
                     setShowWhatsAppNotification(true);
                   }}
-                  className="hover:text-teal-400 flex items-center gap-1 cursor-pointer"
+                  className="hover:text-blue-600 flex items-center gap-1 cursor-pointer font-medium"
                 >
-                  <RefreshCw className="w-3 h-3" /> Resend Token
+                  <RefreshCw className="w-3 h-3" /> Resend Code
                 </button>
                 <button
                   type="button"
                   onClick={() => setIsVerifying(false)}
-                  className="hover:text-slate-300 cursor-pointer"
+                  className="hover:text-slate-800 cursor-pointer font-medium"
                 >
-                  Edit Information
+                  Change Email / Phone
                 </button>
               </div>
-            </motion.div>
+            </div>
           ) : mode === 'signin' ? (
-            /* VIEW B: SIGN IN FORM */
-            <motion.form
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              onSubmit={handleSignIn}
-              className="space-y-4"
-            >
+            /* VIEW B: CLEAN SIGN IN FORM */
+            <form onSubmit={handleSignIn} className="space-y-4">
               <div>
-                <label className="block text-xs font-mono text-slate-400 mb-1.5">
-                  USER_IDENTITY // EMAIL
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  Email Address
                 </label>
                 <input
                   type="email"
@@ -541,14 +494,14 @@ export default function GithubBisAuth({
                   value={loginEmail}
                   onChange={(e) => setLoginEmail(e.target.value)}
                   placeholder="msme@sugam.ai"
-                  className="w-full px-3.5 py-2.5 bg-[#161b22] border border-slate-700/80 rounded-xl text-sm font-mono text-white focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 placeholder-slate-600"
+                  className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-1.5">
-                  <span>SECRET_KEY // PASSWORD</span>
-                  <span className="text-[10px] text-slate-500">demo: demo123</span>
+                <div className="flex items-center justify-between text-xs font-bold text-slate-700 mb-1.5">
+                  <span>Password</span>
+                  <span className="text-[11px] text-slate-400 font-normal">Demo: demo123</span>
                 </div>
                 <div className="relative">
                   <input
@@ -557,12 +510,12 @@ export default function GithubBisAuth({
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full px-3.5 py-2.5 bg-[#161b22] border border-slate-700/80 rounded-xl text-sm font-mono text-white focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 placeholder-slate-600 pr-10"
+                    className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-2.5 text-slate-500 hover:text-slate-300"
+                    className="absolute right-3 top-2.5 text-slate-400 hover:text-slate-600"
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
@@ -572,39 +525,35 @@ export default function GithubBisAuth({
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3 px-4 bg-teal-600 hover:bg-teal-500 text-white font-mono font-bold text-xs rounded-xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 mt-2"
+                className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 mt-2"
               >
-                {isLoading ? 'AUTHENTICATING...' : 'AUTHENTICATE USER ➔'}
+                {isLoading ? 'Signing In...' : 'Sign In to Portal ➔'}
               </button>
 
-              <div className="text-center pt-2 text-xs text-slate-500 font-mono">
-                First time exploring?{' '}
+              <div className="text-center pt-2 text-xs text-slate-500">
+                Don't have an account?{' '}
                 <button
                   type="button"
                   onClick={() => setMode('signup')}
-                  className="text-teal-400 hover:underline font-bold cursor-pointer"
+                  className="text-blue-600 hover:underline font-bold cursor-pointer"
                 >
-                  Create verified profile
+                  Create an account
                 </button>
               </div>
-            </motion.form>
+            </form>
           ) : (
-            /* VIEW C: CREATE ACCOUNT FORM */
-            <motion.form
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              onSubmit={handleSignUp}
-              className="space-y-3"
-            >
+            /* VIEW C: CLEAN CREATE ACCOUNT FORM */
+            <form onSubmit={handleSignUp} className="space-y-3">
+              
               {/* Verification Channel Selector */}
-              <div className="grid grid-cols-2 gap-1 p-1 bg-[#161b22] border border-slate-800 rounded-xl text-xs font-mono font-bold">
+              <div className="grid grid-cols-2 gap-1 p-1 bg-slate-100 rounded-xl text-xs font-bold">
                 <button
                   type="button"
                   onClick={() => setVerificationChannel('whatsapp')}
-                  className={`py-1.5 px-2 rounded-lg flex items-center justify-center gap-1.5 cursor-pointer transition ${
+                  className={`py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 cursor-pointer transition ${
                     verificationChannel === 'whatsapp'
-                      ? 'bg-emerald-600 text-white shadow'
-                      : 'text-slate-400 hover:text-white'
+                      ? 'bg-emerald-600 text-white shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   <MessageSquare className="w-3.5 h-3.5" /> WhatsApp OTP
@@ -612,36 +561,36 @@ export default function GithubBisAuth({
                 <button
                   type="button"
                   onClick={() => setVerificationChannel('email')}
-                  className={`py-1.5 px-2 rounded-lg flex items-center justify-center gap-1.5 cursor-pointer transition ${
+                  className={`py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 cursor-pointer transition ${
                     verificationChannel === 'email'
-                      ? 'bg-teal-600 text-white shadow'
-                      : 'text-slate-400 hover:text-white'
+                      ? 'bg-blue-600 text-white shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
-                  <Mail className="w-3.5 h-3.5" /> Resend Email
+                  <Mail className="w-3.5 h-3.5" /> Email Link / OTP
                 </button>
               </div>
 
               <div>
-                <label className="block text-[11px] font-mono text-slate-400 mb-1">
-                  ROLE // ENTITY TYPE
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  Select Your Role
                 </label>
                 <select
                   value={signupRole}
                   onChange={(e) => setSignupRole(e.target.value as UserRole)}
-                  className="w-full px-3 py-2 bg-[#161b22] border border-slate-700/80 rounded-xl text-xs font-mono text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                  <option value="msme">Factory Owner (MSME 80% Fee Concession)</option>
+                  <option value="msme">Factory Owner (MSME 80% Fee Discount)</option>
                   <option value="applicant">New Business / Startup (First-Time License)</option>
-                  <option value="consumer">Citizen / Consumer (Verify ISI Mark & Fakes)</option>
-                  <option value="officer">BIS Quality Officer (Surveillance & Audits)</option>
+                  <option value="consumer">Consumer (Verify ISI Mark & Report Fakes)</option>
+                  <option value="officer">BIS Quality Officer (Surveillance & Reviews)</option>
                 </select>
               </div>
 
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="block text-[11px] font-mono text-slate-400 mb-1">
-                    LEGAL NAME
+                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                    Full Name
                   </label>
                   <input
                     type="text"
@@ -649,31 +598,31 @@ export default function GithubBisAuth({
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Ramesh Sharma"
-                    className="w-full px-3 py-2 bg-[#161b22] border border-slate-700/80 rounded-xl text-xs font-mono text-white focus:outline-none focus:border-emerald-500"
+                    className="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono text-slate-400 mb-1">
-                    ENTERPRISE (OPT)
+                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                    Enterprise (Optional)
                   </label>
                   <input
                     type="text"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    placeholder="Bharat Precision"
-                    className="w-full px-3 py-2 bg-[#161b22] border border-slate-700/80 rounded-xl text-xs font-mono text-white focus:outline-none focus:border-emerald-500"
+                    placeholder="Bharat Enterprise"
+                    className="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </div>
 
               {verificationChannel === 'whatsapp' ? (
                 <div>
-                  <label className="block text-[11px] font-mono text-slate-400 mb-1">
-                    WHATSAPP (+91 MOBILE)
+                  <label className="block text-xs font-bold text-slate-700 mb-1">
+                    WhatsApp Mobile Number
                   </label>
                   <div className="flex gap-2">
-                    <span className="px-3 py-2 bg-slate-800 text-slate-400 font-mono text-xs rounded-xl flex items-center">
+                    <span className="px-3 py-2 bg-slate-100 border border-slate-300 text-slate-600 font-bold text-xs rounded-xl flex items-center">
                       +91
                     </span>
                     <input
@@ -683,29 +632,29 @@ export default function GithubBisAuth({
                       value={phone}
                       onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))}
                       placeholder="98765 43210"
-                      className="flex-1 px-3 py-2 bg-[#161b22] border border-slate-700/80 rounded-xl text-xs font-mono text-white focus:outline-none focus:border-emerald-500"
+                      className="flex-1 px-3 py-2 bg-white border border-slate-300 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     />
                   </div>
                 </div>
               ) : null}
 
               <div>
-                <label className="block text-[11px] font-mono text-slate-400 mb-1">
-                  OFFICIAL EMAIL
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  Email Address
                 </label>
                 <input
                   type="email"
                   required
                   value={signupEmail}
                   onChange={(e) => setSignupEmail(e.target.value)}
-                  placeholder="contact@enterprise.com"
-                  className="w-full px-3 py-2 bg-[#161b22] border border-slate-700/80 rounded-xl text-xs font-mono text-white focus:outline-none focus:border-emerald-500"
+                  placeholder="name@company.com"
+                  className="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-mono text-slate-400 mb-1">
-                  CREATE PASSWORD (MIN 6 CHARS)
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  Password (Minimum 6 characters)
                 </label>
                 <input
                   type="password"
@@ -713,44 +662,48 @@ export default function GithubBisAuth({
                   value={signupPassword}
                   onChange={(e) => setSignupPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full px-3 py-2 bg-[#161b22] border border-slate-700/80 rounded-xl text-xs font-mono text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-500 text-white font-mono font-bold text-xs rounded-xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 mt-1"
+                className={`w-full py-3 px-4 ${
+                  verificationChannel === 'whatsapp'
+                    ? 'bg-emerald-600 hover:bg-emerald-700'
+                    : 'bg-blue-600 hover:bg-blue-700'
+                } text-white font-bold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 mt-1`}
               >
                 {isLoading ? (
-                  'INITIALIZING...'
+                  'Processing...'
                 ) : verificationChannel === 'whatsapp' ? (
                   <>
                     <MessageSquare className="w-3.5 h-3.5" />
-                    SEND WHATSAPP OTP & REGISTER ➔
+                    Send WhatsApp OTP & Register
                   </>
                 ) : (
                   <>
                     <Mail className="w-3.5 h-3.5" />
-                    SEND RESEND VERIFICATION EMAIL ➔
+                    Send Verification Email
                   </>
                 )}
               </button>
 
-              <div className="text-center pt-2 text-xs text-slate-500 font-mono">
+              <div className="text-center pt-2 text-xs text-slate-500">
                 Already registered?{' '}
                 <button
                   type="button"
                   onClick={() => setMode('signin')}
-                  className="text-emerald-400 hover:underline font-bold cursor-pointer"
+                  className="text-blue-600 hover:underline font-bold cursor-pointer"
                 >
                   Sign in here
                 </button>
               </div>
-            </motion.form>
+            </form>
           )}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
