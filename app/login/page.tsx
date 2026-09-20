@@ -1,12 +1,12 @@
 'use client';
 
 import React, { Suspense } from 'react';
-import GithubBisAuth from '@/components/auth/GithubBisAuth';
+import ExactBisLoginPage from '@/components/auth/ExactBisLoginPage';
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-slate-50 flex items-center justify-center text-slate-500 text-xs">Loading portal...</div>}>
-      <GithubBisAuth initialMode="signin" />
+    <Suspense fallback={<div className="min-h-screen bg-[#f1f5f9] flex items-center justify-center text-slate-500 text-xs">Loading SUGAM-AI...</div>}>
+      <ExactBisLoginPage initialTab="login" />
     </Suspense>
   );
 }
