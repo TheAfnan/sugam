@@ -6,10 +6,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Search, FileText, Compass, Users, Shield, Lock, Mail,
-  Eye, EyeOff, ArrowRight, CheckCircle2, ChevronDown,
-  Sparkles, Leaf, BarChart3, Settings, ShieldCheck, RefreshCw,
-  Building2, Rocket, ShieldAlert, KeyRound, MessageSquare, X
+  Lock, Mail, Eye, EyeOff, ArrowRight, CheckCircle2, ChevronDown,
+  Shield, FileText, Users, ShieldCheck, RefreshCw,
+  Building2, Rocket, ShieldAlert, MessageSquare, X
 } from 'lucide-react';
 import { DEMO_PERSONAS, UserRole } from '@/lib/useAuth';
 
@@ -32,7 +31,6 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
   const [loginIdentifier, setLoginIdentifier] = useState('msme@sugam.ai');
   const [loginPassword, setLoginPassword] = useState('demo123');
   const [showLoginPassword, setShowLoginPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(true);
 
   // Sign Up Form States
   const [signupName, setSignupName] = useState('');
@@ -41,7 +39,7 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
   const [showSignupPassword, setShowSignupPassword] = useState(false);
   const [signupRole, setSignupRole] = useState<UserRole>('msme');
   const [signupCompany, setSignupCompany] = useState('');
-  const [signupMethod, setSignupMethod] = useState<'email' | 'whatsapp'>('whatsapp');
+  const [signupMethod, setSignupMethod] = useState<'whatsapp' | 'email'>('whatsapp');
 
   // Verification (OTP / Email) States
   const [isVerifying, setIsVerifying] = useState(false);
@@ -87,13 +85,12 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
         body: JSON.stringify({
           email: loginIdentifier,
           password: loginPassword,
-          rememberMe,
         }),
       });
       const data = await res.json();
 
       if (!res.ok || !data.success) {
-        setErrorMsg(data.error || 'Invalid credentials. Please check your details.');
+        setErrorMsg(data.error || 'Invalid email or password. Please try again.');
         return;
       }
 
@@ -103,7 +100,7 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
       const role = data.user?.role || 'msme';
       const next = searchParams.get('next') || `/dashboard/${role}`;
       router.push(next);
-    } catch (err) {
+    } catch {
       setErrorMsg('Connection error. Please try again.');
     } finally {
       setIsLoading(false);
@@ -165,7 +162,7 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
         window.dispatchEvent(new Event('bis-auth-change'));
         router.push(`/dashboard/${data.user.role || 'msme'}`);
       }
-    } catch (err) {
+    } catch {
       setErrorMsg('Unable to register. Please try again.');
     } finally {
       setIsLoading(false);
@@ -219,7 +216,7 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
   // Forgot password mock
   const handleForgotSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setForgotSuccess(`Password reset link sent to ${forgotEmail}. Please check your inbox.`);
+    setForgotSuccess(`Password reset instructions sent to ${forgotEmail}.`);
     setTimeout(() => {
       setShowForgotModal(false);
       setForgotSuccess('');
@@ -227,7 +224,7 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
   };
 
   return (
-    <div className="min-h-screen bg-[#f1f5f9] text-slate-800 flex flex-col justify-between font-sans antialiased selection:bg-blue-600 selection:text-white relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#f3f5f8] text-slate-800 flex flex-col justify-between font-sans antialiased selection:bg-blue-600 selection:text-white relative">
       
       {/* WhatsApp Simulated Toast Notification (Top Center) */}
       <AnimatePresence>
@@ -277,7 +274,7 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
           <div className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl border border-slate-200 relative">
             <button
               onClick={() => setShowForgotModal(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600"
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -301,7 +298,7 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
                 />
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white font-bold py-2.5 rounded-xl text-xs hover:bg-blue-700 transition"
+                  className="w-full bg-blue-600 text-white font-bold py-2.5 rounded-xl text-xs hover:bg-blue-700 transition cursor-pointer"
                 >
                   Send Reset Link
                 </button>
@@ -311,226 +308,80 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
         </div>
       )}
 
-      {/* TOP BAR / HEADER */}
-      <header className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2 flex items-center justify-between">
-        {/* Left: BIS Official Logo & Text */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-11 h-11 relative shrink-0">
-            <Image
-              src="/images/bis_logo.png"
-              alt="Bureau of Indian Standards Logo"
-              width={50}
-              height={50}
-              className="object-contain w-full h-full"
-              priority
-            />
-          </div>
-          <div className="leading-tight">
-            <div className="text-sm font-extrabold text-slate-900 tracking-tight">
-              भारतीय मानक ब्यूरो
-            </div>
-            <div className="text-xs font-bold text-slate-800">
-              Bureau of Indian Standards
-            </div>
-            <div className="text-[10px] text-slate-500 font-medium">
-              The National Standards Body of India
-            </div>
-          </div>
-        </Link>
-
-        {/* Center: "Built on BIS. Not Replacing BIS." + Tricolor Line (Hidden on small mobile) */}
-        <div className="hidden md:flex flex-col items-center justify-center text-center">
-          <span className="text-xs font-semibold text-slate-700">
-            Built on BIS. Not Replacing BIS.
-          </span>
-          <div className="flex items-center gap-1 mt-1">
-            <span className="w-7 h-1 bg-[#ff9933] rounded-full"></span>
-            <span className="w-7 h-1 bg-slate-200 rounded-full"></span>
-            <span className="w-7 h-1 bg-[#138808] rounded-full"></span>
-          </div>
-        </div>
-
-        {/* Right: Language Selector Dropdown */}
-        <div className="relative">
-          <button
-            type="button"
-            onClick={() => setIsLangOpen(!isLangOpen)}
-            className="flex items-center gap-2 px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 shadow-2xs transition cursor-pointer"
-          >
-            <span>🌐</span>
-            <span>{selectedLanguage}</span>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
-          </button>
-
-          {isLangOpen && (
-            <div className="absolute right-0 mt-1.5 w-36 bg-white border border-slate-200 rounded-xl shadow-lg py-1 z-30 text-xs">
-              {['English', 'हिन्दी (Hindi)', 'தமிழ் (Tamil)', 'বাংলা (Bengali)', 'मराठी (Marathi)'].map((lang) => (
-                <button
-                  key={lang}
-                  type="button"
-                  onClick={() => {
-                    setSelectedLanguage(lang);
-                    setIsLangOpen(false);
-                  }}
-                  className="w-full text-left px-3 py-1.5 hover:bg-blue-50 hover:text-blue-600 font-medium transition"
-                >
-                  {lang}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-      </header>
-
-      {/* MAIN HERO & AUTH SECTION */}
-      <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-1 flex items-center">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+      {/* ======================================================== */}
+      {/* DESKTOP & MOBILE WRAPPER                                  */}
+      {/* ======================================================== */}
+      <div className="flex-1 flex flex-col justify-center items-center px-3 sm:px-6 py-4 md:py-6">
+        
+        {/* Main 2-Column Responsive Container */}
+        <div className="w-full max-w-[1140px] bg-white rounded-3xl shadow-xl border border-slate-200/90 overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[640px]">
           
           {/* ======================================================== */}
-          {/* LEFT COLUMN: HERO CONTENT & VALUE PROPOSITION (7 cols)   */}
+          {/* LEFT COLUMN: HERO POSTER (Exact Match, 7 cols)           */}
           {/* ======================================================== */}
-          <div className="lg:col-span-7 flex flex-col justify-center space-y-5 relative">
+          <div className="lg:col-span-7 bg-[#edf2f7] relative flex flex-col justify-between overflow-hidden min-h-[420px] lg:min-h-full">
             
-            {/* Top Pill: SUGAM-AI AN INTELLIGENT LAYER */}
-            <div className="inline-flex items-center gap-2 p-1 pr-3 bg-white/90 border border-blue-100 rounded-full shadow-2xs max-w-fit">
-              <span className="bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full">
-                SUGAM-AI
-              </span>
-              <span className="text-[11px] font-medium text-slate-700 flex items-center gap-1">
-                AN INTELLIGENT LAYER FOR SIMPLER BIS COMPLIANCE
-                <ArrowRight className="w-3 h-3 text-blue-600" />
-              </span>
+            {/* The High-Resolution 2x Retina Hero Graphic */}
+            <div className="relative w-full h-full min-h-[460px] lg:min-h-full">
+              <Image
+                src="/images/left_hero_retina.jpg"
+                alt="Bureau of Indian Standards SUGAM-AI - Simpler Standards, Stronger Bharat"
+                fill
+                className="object-contain lg:object-cover object-top"
+                priority
+                sizes="(max-width: 1024px) 100vw, 55vw"
+              />
             </div>
 
-            {/* Main Title & Sparkle */}
-            <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">
-                  SUGAM-AI
-                </h1>
-                <Sparkles className="w-7 h-7 text-blue-600 fill-blue-600 shrink-0" />
-              </div>
-              <h2 className="text-lg sm:text-xl font-bold text-slate-800 mt-1">
-                Simpler Standards. Stronger Bharat.
-              </h2>
-              <p className="text-sm text-slate-600 mt-2 max-w-xl leading-relaxed">
-                Your AI-powered guide to Indian Standards, certification, testing, schemes and more.
-              </p>
-            </div>
-
-            {/* Feature Points & Illustration Container */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center relative">
-              
-              {/* Feature Points (Left Sub-column) */}
-              <div className="md:col-span-6 space-y-3.5 z-10">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-                    <Search className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900">Find</div>
-                    <div className="text-[11px] text-slate-500">the right BIS standards</div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-                    <FileText className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900">Understand</div>
-                    <div className="text-[11px] text-slate-500">requirements in simple language</div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-                    <Compass className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900">Get guidance</div>
-                    <div className="text-[11px] text-slate-500">on tests, documents and next steps</div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-                    <Users className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900">For everyone</div>
-                    <div className="text-[11px] text-slate-500">MSMEs, businesses, consumers and more</div>
-                  </div>
-                </div>
-
-                {/* Quote Block */}
-                <div className="pt-2 border-l-2 border-blue-500 pl-3 mt-2">
-                  <p className="text-xs italic font-medium text-slate-700">
-                    &ldquo;Standards for a Safer, Stronger, Self-Reliant India&rdquo;
-                  </p>
-                  <p className="text-[10px] text-slate-500 font-semibold mt-0.5">
-                    — Bureau of Indian Standards
-                  </p>
-                </div>
-              </div>
-
-              {/* People & Skyline Hero Montage (Right Sub-column) */}
-              <div className="md:col-span-6 relative flex items-center justify-center">
-                <div className="relative w-full max-w-[320px] aspect-[4/5] rounded-2xl overflow-hidden shadow-lg border border-white">
-                  <Image
-                    src="/images/bis_people_hero.png"
-                    alt="Indian Engineers, Professionals and Citizens with Vande Bharat and Manak Se Vikas"
-                    fill
-                    className="object-cover object-top"
-                    priority
-                  />
-                  {/* Subtle Tricolor Glow on Bottom */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent"></div>
-                  
-                  {/* Cursive Quality & Safety Motto */}
-                  <div className="absolute top-3 right-3 text-right text-blue-900/90 font-serif italic text-xs leading-tight drop-shadow-xs select-none">
-                    Quality<br />
-                    Safety<br />
-                    Trust<br />
-                    <span className="text-[10px] text-blue-600">For a Better Tomorrow</span>
-                  </div>
-
-                  {/* Tricolor Slogan Tag */}
-                  <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-lg border border-slate-200 shadow-xs">
-                    <span className="text-[10px] font-black text-emerald-700 uppercase tracking-wider">
-                      MANAK SE VIKAS
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom 4 Feature Icons Strip */}
-            <div className="pt-2 flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] text-slate-600 font-medium border-t border-slate-200/80">
-              <span className="flex items-center gap-1.5">
-                <Leaf className="w-3.5 h-3.5 text-emerald-600" /> Safer Products
-              </span>
-              <span className="flex items-center gap-1.5">
-                <BarChart3 className="w-3.5 h-3.5 text-blue-600" /> Stronger Industries
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Users className="w-3.5 h-3.5 text-indigo-600" /> Empowered Citizens
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Settings className="w-3.5 h-3.5 text-amber-600" /> A Better Tomorrow
-              </span>
-            </div>
           </div>
 
           {/* ======================================================== */}
-          {/* RIGHT COLUMN: THE CLEAN AUTH CARD (5 cols)               */}
+          {/* RIGHT COLUMN: INTERACTIVE AUTH CARD (5 cols)             */}
           {/* ======================================================== */}
-          <div className="lg:col-span-5 flex flex-col items-center">
+          <div className="lg:col-span-5 bg-white relative flex flex-col justify-between p-6 sm:p-8 lg:p-10 border-t lg:border-t-0 lg:border-l border-slate-100">
             
-            {/* White Floating Card */}
-            <div className="w-full max-w-md bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200/80 relative">
+            {/* Top Bar on Right: Language Selector */}
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider hidden sm:inline">
+                BIS Quality Portal
+              </span>
+
+              {/* Language Selector Dropdown */}
+              <div className="relative ml-auto">
+                <button
+                  type="button"
+                  onClick={() => setIsLangOpen(!isLangOpen)}
+                  className="flex items-center gap-2 px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 shadow-2xs transition cursor-pointer"
+                >
+                  <span>🌐</span>
+                  <span>{selectedLanguage}</span>
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+                </button>
+
+                {isLangOpen && (
+                  <div className="absolute right-0 mt-1.5 w-36 bg-white border border-slate-200 rounded-xl shadow-lg py-1 z-30 text-xs">
+                    {['English', 'हिन्दी (Hindi)', 'தமிழ் (Tamil)', 'বাংলা (Bengali)', 'मराठी (Marathi)'].map((lang) => (
+                      <button
+                        key={lang}
+                        type="button"
+                        onClick={() => {
+                          setSelectedLanguage(lang);
+                          setIsLangOpen(false);
+                        }}
+                        className="w-full text-left px-3 py-1.5 hover:bg-blue-50 hover:text-blue-600 font-medium transition cursor-pointer"
+                      >
+                        {lang}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Auth Form Center Container */}
+            <div className="w-full max-w-sm mx-auto my-auto">
               
-              {/* Tab Header: Login | Sign Up */}
+              {/* Tab Switcher: Login | Sign Up */}
               <div className="flex items-center border-b border-slate-200 pb-3 mb-6">
                 <button
                   type="button"
@@ -577,7 +428,7 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
                 </button>
               </div>
 
-              {/* Success / Notification Banner */}
+              {/* Success Banner */}
               {successMsg && (
                 <div className="mb-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs font-medium flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -593,11 +444,11 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
               )}
 
               {/* =================================================== */}
-              {/* TAB 1: LOGIN                                        */}
+              {/* TAB 1: LOGIN VIEW                                   */}
               {/* =================================================== */}
               {activeTab === 'login' && (
                 <div>
-                  <div className="text-center mb-6">
+                  <div className="text-center mb-5">
                     <h3 className="text-2xl font-black text-slate-900 tracking-tight">
                       Welcome Back
                     </h3>
@@ -606,8 +457,8 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
                     </p>
                   </div>
 
-                  <form onSubmit={handleLoginSubmit} className="space-y-4">
-                    {/* Input 1: Email / Mobile */}
+                  <form onSubmit={handleLoginSubmit} className="space-y-3.5">
+                    {/* Input: Email / Mobile */}
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                         <Mail className="w-4 h-4" />
@@ -622,7 +473,7 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
                       />
                     </div>
 
-                    {/* Input 2: Password */}
+                    {/* Input: Password */}
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                         <Lock className="w-4 h-4" />
@@ -659,21 +510,21 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="w-full bg-[#1e40af] hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2 text-sm cursor-pointer disabled:opacity-50"
+                      className="w-full bg-[#1a56db] hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2 text-sm cursor-pointer disabled:opacity-50"
                     >
                       {isLoading ? 'Logging in...' : 'Login →'}
                     </button>
                   </form>
 
                   {/* OR Divider */}
-                  <div className="relative flex items-center justify-center my-5">
+                  <div className="relative flex items-center justify-center my-4">
                     <div className="border-t border-slate-200 w-full"></div>
                     <span className="bg-white px-3 text-[10px] uppercase font-bold text-slate-400 absolute">
                       OR
                     </span>
                   </div>
 
-                  {/* Social / 1-Click Buttons (DigiLocker Removed as requested) */}
+                  {/* Social Buttons (DigiLocker Removed as requested) */}
                   <div className="space-y-2">
                     {/* Google Button */}
                     <button
@@ -691,20 +542,20 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
                       <span>Continue with Google</span>
                     </button>
 
-                    {/* Evaluator Quick Role Selector Button */}
+                    {/* Evaluator 1-Click Role Access */}
                     <button
                       type="button"
                       onClick={() => setShowEvaluatorDrawer(!showEvaluatorDrawer)}
-                      className="w-full py-2 px-3 bg-blue-50/80 hover:bg-blue-100/80 border border-blue-200 rounded-xl text-[11px] font-bold text-blue-700 flex items-center justify-between transition cursor-pointer"
+                      className="w-full py-1.5 px-3 bg-blue-50/70 hover:bg-blue-100/70 border border-blue-200 rounded-xl text-[11px] font-bold text-blue-700 flex items-center justify-between transition cursor-pointer"
                     >
                       <span className="flex items-center gap-1.5">
                         <ShieldCheck className="w-3.5 h-3.5" />
-                        Evaluator 1-Click Demo Portals
+                        Evaluator 1-Click Portals
                       </span>
                       <ChevronDown className={`w-3.5 h-3.5 transition-transform ${showEvaluatorDrawer ? 'rotate-180' : ''}`} />
                     </button>
 
-                    {/* Collapsible 1-Click Persona Cards */}
+                    {/* Collapsible 1-Click Buttons */}
                     {showEvaluatorDrawer && (
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
@@ -730,7 +581,7 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
                         >
                           <Rocket className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                           <div className="min-w-0">
-                            <div className="text-[11px] font-bold text-slate-900 truncate">New Business</div>
+                            <div className="text-[11px] font-bold text-slate-900 truncate">New Startup</div>
                             <div className="text-[9px] text-slate-500 truncate">First-Time ISI</div>
                           </div>
                         </button>
@@ -763,7 +614,7 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
                   </div>
 
                   {/* Switch to Sign Up */}
-                  <div className="text-center mt-5 text-xs text-slate-600">
+                  <div className="text-center mt-4 text-xs text-slate-600">
                     New to SUGAM-AI?{' '}
                     <button
                       type="button"
@@ -777,11 +628,11 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
               )}
 
               {/* =================================================== */}
-              {/* TAB 2: SIGN UP                                      */}
+              {/* TAB 2: SIGN UP VIEW                                 */}
               {/* =================================================== */}
               {activeTab === 'signup' && (
                 <div>
-                  <div className="text-center mb-5">
+                  <div className="text-center mb-4">
                     <h3 className="text-2xl font-black text-slate-900 tracking-tight">
                       Create an Account
                     </h3>
@@ -833,7 +684,7 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
                         <button
                           type="submit"
                           disabled={isLoading}
-                          className="w-full bg-[#1e40af] hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2 text-xs cursor-pointer disabled:opacity-50"
+                          className="w-full bg-[#1a56db] hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2 text-xs cursor-pointer disabled:opacity-50"
                         >
                           {isLoading ? 'Verifying...' : 'Verify & Enter Dashboard →'}
                         </button>
@@ -864,7 +715,7 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
                     /* Normal Sign Up Form */
                     <form onSubmit={handleSignUpSubmit} className="space-y-3">
                       
-                      {/* Fast Method Switcher */}
+                      {/* Method Switcher */}
                       <div className="grid grid-cols-2 gap-1 p-1 bg-slate-100 rounded-xl text-xs font-bold mb-1">
                         <button
                           type="button"
@@ -965,7 +816,7 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
                         className={`w-full py-3 px-4 ${
                           signupMethod === 'whatsapp'
                             ? 'bg-emerald-600 hover:bg-emerald-700'
-                            : 'bg-[#1e40af] hover:bg-blue-700'
+                            : 'bg-[#1a56db] hover:bg-blue-700'
                         } text-white font-bold rounded-xl shadow-md transition flex items-center justify-center gap-2 text-xs cursor-pointer disabled:opacity-50 mt-1`}
                       >
                         {isLoading ? 'Processing...' : signupMethod === 'whatsapp' ? 'Send WhatsApp OTP →' : 'Create Account →'}
@@ -987,53 +838,58 @@ export default function ExactBisLoginPage({ initialTab = 'login' }: ExactBisLogi
                 </div>
               )}
 
-              {/* Trust Badges Below Card */}
-              <div className="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500 font-medium">
+            </div>
+
+            {/* Bottom on Right: Trust Badges & Aatmanirbhar Banner */}
+            <div className="pt-4 border-t border-slate-100 space-y-3">
+              
+              {/* Trust Badges */}
+              <div className="flex items-center justify-between text-[10px] text-slate-500 font-medium">
                 <span className="flex items-center gap-1">
                   <Shield className="w-3 h-3 text-blue-600" /> Secure & Private
                 </span>
                 <span className="flex items-center gap-1">
-                  <FileText className="w-3 h-3 text-emerald-600" /> Trusted BIS Information
+                  <FileText className="w-3 h-3 text-emerald-600" /> Trusted BIS Info
                 </span>
                 <span className="flex items-center gap-1 hidden sm:flex">
-                  <Users className="w-3 h-3 text-indigo-600" /> For All Citizens
+                  <Users className="w-3 h-3 text-indigo-600" /> For Citizens & MSMEs
                 </span>
               </div>
+
+              {/* Aatmanirbhar Bharat / Quality Standards Banner */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-2 pt-2 border-t border-slate-100/80">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 relative shrink-0">
+                    <Image
+                      src="/images/emblem.png"
+                      alt="Government of India Emblem"
+                      width={24}
+                      height={24}
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="leading-tight text-left">
+                    <div className="text-[9px] text-slate-400">Under the vision of</div>
+                    <div className="text-[11px] font-bold text-slate-800">Aatmanirbhar Bharat</div>
+                  </div>
+                </div>
+
+                <Link
+                  href="/standards"
+                  className="flex items-center gap-1.5 px-3 py-1 bg-slate-50 hover:bg-blue-50 border border-slate-200 rounded-full text-[10px] font-semibold text-slate-700 hover:text-blue-600 transition"
+                >
+                  <span>Quality Standards for Developed India</span>
+                  <ArrowRight className="w-3 h-3 text-blue-600" />
+                </Link>
+              </div>
+
             </div>
+
           </div>
 
         </div>
-      </main>
 
-      {/* BOTTOM FOOTER BAR */}
-      <footer className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600 border-t border-slate-200/80">
-        
-        {/* Left: Lion Capital / Aatmanirbhar Bharat */}
-        <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 relative shrink-0">
-            <Image
-              src="/images/emblem.png"
-              alt="Government of India Emblem"
-              width={28}
-              height={28}
-              className="object-contain"
-            />
-          </div>
-          <div className="leading-tight">
-            <div className="text-[10px] text-slate-500">Under the vision of</div>
-            <div className="text-xs font-bold text-slate-800">Aatmanirbhar Bharat</div>
-          </div>
-        </div>
-
-        {/* Right: Quality Standards Pill */}
-        <Link
-          href="/standards"
-          className="flex items-center gap-2 px-4 py-1.5 bg-white hover:bg-slate-50 border border-slate-200 rounded-full text-xs font-semibold text-slate-800 shadow-2xs transition"
-        >
-          <span>Quality Standards for a Developed India</span>
-          <ArrowRight className="w-3.5 h-3.5 text-blue-600" />
-        </Link>
-      </footer>
+      </div>
 
     </div>
   );
