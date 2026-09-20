@@ -68,7 +68,7 @@ export default function AuthLayout({ initialTab = 'login' }: AuthLayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#f3f5f8] text-slate-800 flex flex-col justify-between font-sans antialiased selection:bg-blue-600 selection:text-white relative">
+    <div className="min-h-screen bg-gradient-to-b from-[#f1f6fc] via-[#e8f1f9] to-[#dde8f4] text-slate-800 flex flex-col justify-between font-sans antialiased selection:bg-blue-600 selection:text-white relative overflow-x-hidden">
       
       {/* WhatsApp Simulated Toast Notification (Top Center) */}
       <AnimatePresence>
@@ -169,7 +169,9 @@ export default function AuthLayout({ initialTab = 'login' }: AuthLayoutProps) {
         </div>
       )}
 
+      {/* ======================================================== */}
       {/* TOP HEADER: BIS Logo, "Built on BIS", and Language Dropdown */}
+      {/* ======================================================== */}
       <header className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2 flex items-center justify-between">
         {/* Left: BIS Official Logo & Bilingual Branding */}
         <Link href="/" className="flex items-center gap-3 group" aria-label="SUGAM-AI Home">
@@ -203,7 +205,7 @@ export default function AuthLayout({ initialTab = 'login' }: AuthLayoutProps) {
           </span>
           <div className="flex items-center gap-1 mt-1" aria-hidden="true">
             <span className="w-7 h-1 bg-[#ff9933] rounded-full"></span>
-            <span className="w-7 h-1 bg-slate-200 rounded-full"></span>
+            <span className="w-7 h-1 bg-white border border-slate-200 rounded-full"></span>
             <span className="w-7 h-1 bg-[#138808] rounded-full"></span>
           </div>
         </div>
@@ -213,7 +215,7 @@ export default function AuthLayout({ initialTab = 'login' }: AuthLayoutProps) {
           <button
             type="button"
             onClick={() => setIsLangOpen(!isLangOpen)}
-            className="flex items-center gap-2 px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 shadow-2xs transition cursor-pointer"
+            className="flex items-center gap-2 px-3 py-1.5 bg-white/90 hover:bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 shadow-2xs transition cursor-pointer"
             aria-haspopup="listbox"
             aria-expanded={isLangOpen}
           >
@@ -243,34 +245,46 @@ export default function AuthLayout({ initialTab = 'login' }: AuthLayoutProps) {
       </header>
 
       {/* ======================================================== */}
-      {/* MAIN CONTENT: SPLIT-SCREEN DESKTOP & MOBILE WRAPPER       */}
+      {/* MAIN CONTENT: 2-COLUMN BALANCED CARDS + BOTTOM CAPSULES  */}
       {/* ======================================================== */}
-      <main className="flex-1 flex flex-col justify-center items-center px-3 sm:px-6 py-4 md:py-6">
-        
-        {/* Main 2-Column Responsive Card Container */}
-        <div className="w-full max-w-[1140px] bg-white rounded-3xl shadow-xl border border-slate-200/90 overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[640px]">
+      <main className="flex-1 flex flex-col justify-center items-center px-4 sm:px-6 py-4 md:py-6">
+        <div className="w-full max-w-[1180px] grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           
           {/* ======================================================== */}
-          {/* LEFT SIDE: HERO FEATURES (Exact Visual Reproduction)      */}
+          {/* LEFT COLUMN: HERO CARD + 4-ITEM PILL BAR                 */}
           {/* ======================================================== */}
-          <div className="lg:col-span-7 bg-[#edf2f7] relative flex flex-col justify-between overflow-hidden min-h-[420px] lg:min-h-full">
-            <HeroFeatures />
+          <div className="lg:col-span-7 flex flex-col gap-4">
+            {/* The Left Hero Graphic Card */}
+            <div className="w-full bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden relative min-h-[480px] sm:min-h-[560px] lg:min-h-[620px]">
+              <HeroFeatures />
+            </div>
+
+            {/* Bottom 4-Item Feature Capsule */}
+            <div className="bg-white/90 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-xs px-4 py-2.5 hidden sm:flex items-center justify-between text-[11px] font-semibold text-slate-600">
+              <span className="flex items-center gap-1.5">
+                <span className="text-emerald-600">🍃</span> Safer Products
+              </span>
+              <span className="text-slate-300">|</span>
+              <span className="flex items-center gap-1.5">
+                <span className="text-blue-600">📊</span> Stronger Industries
+              </span>
+              <span className="text-slate-300">|</span>
+              <span className="flex items-center gap-1.5">
+                <span className="text-indigo-600">👥</span> Empowered Citizens
+              </span>
+              <span className="text-slate-300">|</span>
+              <span className="flex items-center gap-1.5">
+                <span className="text-cyan-600">⚙️</span> A Better Tomorrow
+              </span>
+            </div>
           </div>
 
           {/* ======================================================== */}
-          {/* RIGHT SIDE: AUTHENTICATION CARD                          */}
+          {/* RIGHT COLUMN: AUTH CARD + TRUST BADGES + AATMANIRBHAR     */}
           {/* ======================================================== */}
-          <div className="lg:col-span-5 bg-white relative flex flex-col justify-between p-6 sm:p-8 lg:p-10 border-t lg:border-t-0 lg:border-l border-slate-100">
-            
-            {/* Top Info Tag on Card */}
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider hidden sm:inline">
-                BIS Quality Portal
-              </span>
-            </div>
-
-            {/* Centered Form Area */}
-            <div className="w-full max-w-sm mx-auto my-auto">
+          <div className="lg:col-span-5 flex flex-col gap-4">
+            {/* The White Authentication Card */}
+            <div className="w-full bg-white rounded-3xl shadow-xl border border-slate-200/80 p-6 sm:p-8 flex flex-col justify-between min-h-[560px] lg:min-h-[620px]">
               
               {/* Tab Switcher: Login | Sign Up */}
               <div className="flex items-center border-b border-slate-200 pb-3 mb-6" role="tablist">
@@ -315,70 +329,67 @@ export default function AuthLayout({ initialTab = 'login' }: AuthLayoutProps) {
                 </button>
               </div>
 
-              {/* Active Form */}
-              {activeTab === 'login' ? (
-                <LoginForm
-                  onSwitchToSignup={() => setActiveTab('signup')}
-                  onForgotPassword={() => setShowForgotModal(true)}
-                />
-              ) : (
-                <SignupForm
-                  onSwitchToLogin={() => setActiveTab('login')}
-                  onShowWhatsAppToast={triggerWhatsAppToast}
-                />
-              )}
-
+              {/* Active Form Area */}
+              <div className="w-full max-w-sm mx-auto my-auto">
+                {activeTab === 'login' ? (
+                  <LoginForm
+                    onSwitchToSignup={() => setActiveTab('signup')}
+                    onForgotPassword={() => setShowForgotModal(true)}
+                  />
+                ) : (
+                  <SignupForm
+                    onSwitchToLogin={() => setActiveTab('login')}
+                    onShowWhatsAppToast={triggerWhatsAppToast}
+                  />
+                )}
+              </div>
             </div>
 
-            {/* Trust Badges & Aatmanirbhar Bharat Footer Below Card */}
-            <div className="pt-4 border-t border-slate-100 space-y-3">
-              {/* 3 Trust Badges */}
-              <div className="flex items-center justify-between text-[10px] text-slate-500 font-medium">
-                <span className="flex items-center gap-1">
-                  <Shield className="w-3 h-3 text-blue-600" /> Secure & Private
-                </span>
-                <span className="flex items-center gap-1">
-                  <FileText className="w-3 h-3 text-emerald-600" /> Trusted BIS Information
-                </span>
-                <span className="flex items-center gap-1 hidden sm:flex">
-                  <Users className="w-3 h-3 text-indigo-600" /> For Citizens, MSMEs & All
-                </span>
-              </div>
+            {/* 3 Trust Badges directly beneath the Auth Card */}
+            <div className="flex items-center justify-between px-2 text-[10px] text-slate-600 font-semibold">
+              <span className="flex items-center gap-1">
+                <Shield className="w-3.5 h-3.5 text-blue-600 shrink-0" /> Secure & Private
+              </span>
+              <span className="flex items-center gap-1">
+                <FileText className="w-3.5 h-3.5 text-emerald-600 shrink-0" /> Trusted BIS Information
+              </span>
+              <span className="flex items-center gap-1">
+                <Users className="w-3.5 h-3.5 text-indigo-600 shrink-0" /> For Citizens, MSMEs & All
+              </span>
+            </div>
 
-              {/* Aatmanirbhar Bharat / Quality Standards Banner */}
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-2 pt-2 border-t border-slate-100/80">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 relative shrink-0">
-                    <Image
-                      src="/images/emblem.png"
-                      alt="Government of India Emblem"
-                      width={24}
-                      height={24}
-                      className="object-contain"
-                    />
-                  </div>
-                  <div className="leading-tight text-left">
-                    <div className="text-[9px] text-slate-400">Under the vision of</div>
-                    <div className="text-[11px] font-bold text-slate-800">Aatmanirbhar Bharat</div>
-                  </div>
+            {/* Aatmanirbhar Bharat / Quality Standards Banner */}
+            <div className="bg-white/90 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-xs px-4 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="flex items-center gap-2.5">
+                <div className="w-6 h-6 relative shrink-0">
+                  <Image
+                    src="/images/emblem.png"
+                    alt="Government of India Emblem"
+                    width={24}
+                    height={24}
+                    className="object-contain"
+                  />
                 </div>
-
-                <Link
-                  href="/standards"
-                  className="flex items-center gap-1.5 px-3 py-1 bg-slate-50 hover:bg-blue-50 border border-slate-200 rounded-full text-[10px] font-semibold text-slate-700 hover:text-blue-600 transition"
-                >
-                  <span>Quality Standards for a Developed India</span>
-                  <ArrowRight className="w-3 h-3 text-blue-600" />
-                </Link>
+                <div className="leading-tight text-left">
+                  <div className="text-[9px] text-slate-400">Under the vision of</div>
+                  <div className="text-[11px] font-bold text-slate-800">Aatmanirbhar Bharat</div>
+                </div>
               </div>
+
+              <Link
+                href="/standards"
+                className="flex items-center gap-1.5 px-3 py-1 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-full text-[10px] font-bold text-blue-700 transition ml-auto"
+              >
+                <span>Quality Standards for a Developed India</span>
+                <ArrowRight className="w-3 h-3 text-blue-600" />
+              </Link>
             </div>
 
           </div>
 
         </div>
-
       </main>
-
     </div>
   );
 }
+
